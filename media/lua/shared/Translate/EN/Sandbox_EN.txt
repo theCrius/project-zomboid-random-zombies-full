@@ -1,0 +1,64 @@
+Sandbox_EN = {
+  Sandbox_RandomZombiesFull = "Random Zombies Full"
+
+  Sandbox_RandomZombiesFull_Frequency = "Frequency Override",
+  Sandbox_RandomZombiesFull_Frequency_tooltip = "The interval in milliseconds between two updates. Higher number means less CPU usage but lower number will decrese the reactivity of the mod in overriding the normal zombie behaviour",
+
+  Sandbox_RandomZombiesFull_Summer_Night_Start = "Summer Night Start",
+  Sandbox_RandomZombiesFull_Summer_Night_Start_tooltip = "At what time the night start in Summer. ",
+  Sandbox_RandomZombiesFull_Summer_Night_End = "Summer Night End",
+  Sandbox_RandomZombiesFull_Summer_Night_End_tooltip = "At what time the night end in Summer. ",
+
+  Sandbox_RandomZombiesFull_Autumn_Night_Start = "Autumn Night Start",
+  Sandbox_RandomZombiesFull_Autumn_Night_Start_tooltip = "At what time the night start in Autumn. ",
+  Sandbox_RandomZombiesFull_Autumn_Night_End = "Autumn Night End",
+  Sandbox_RandomZombiesFull_Autumn_Night_End_tooltip = "At what time the night end in Autumn. ",
+
+  Sandbox_RandomZombiesFull_Winter_Night_Start = "Winter Night Start",
+  Sandbox_RandomZombiesFull_Winter_Night_Start_tooltip = "At what time the night start in Winter. ",
+  Sandbox_RandomZombiesFull_Winter_Night_End = "Winter Night End",
+  Sandbox_RandomZombiesFull_Winter_Night_End_tooltip = "At what time the night end in Winter. ",
+
+  Sandbox_RandomZombiesFull_Spring_Night_Start = "Spring Night Start",
+  Sandbox_RandomZombiesFull_Spring_Night_Start_tooltip = "At what time the night start in Spring. ",
+  Sandbox_RandomZombiesFull_Spring_Night_End = "Spring Night End",
+  Sandbox_RandomZombiesFull_Spring_Night_End_tooltip = "At what time the night end in Spring. ",
+  
+  Sandbox_RandomZombiesFull_Crawler_Night = "Crawlers Percent",
+  Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentage of Crawlers present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_Shambler_Night = "Shamblers Percent",
+  Sandbox_RandomZombiesFull_Shambler_Night_tooltip = "Percentage of Shamblers present in the world. Percentage of Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_FastShambler_Night = "Fast Shamblers Percent",
+  Sandbox_RandomZombiesFull_FastShambler_Night_tooltip = "Percentage of Fast Shamblers present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_Sprinter_Night = "Sprinters Percent",
+  Sandbox_RandomZombiesFull_Sprinter_Night_tooltip = "Percentage of Sprinters present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+
+  Sandbox_RandomZombiesFull_Fragile_Night = "Fragile Percent",
+  Sandbox_RandomZombiesFull_Fragile_Night_tooltip = "Percentage of Fragile zombies present in the world. Fragile, Normal and Tough must add up to 100.",
+  Sandbox_RandomZombiesFull_Normal_Night = "Average Percent",
+  Sandbox_RandomZombiesFull_Normal_Night_tooltip = "Percentage of zombies with normal toughness present in the world. Fragile, Normal and Tough must add up to 100.",
+  Sandbox_RandomZombiesFull_Tough_Night = "Tough Percent",
+  Sandbox_RandomZombiesFull_Tough_Night_tooltip = "Percentage of Tough zombies present in the world. Fragile, Normal and Tough must add up to 100.",
+
+  Sandbox_RandomZombiesFull_Smart_Night = "Smart Percent"
+  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentage of Smart zombies present in the world. These zombies can open doors and have hightened senses.",
+
+  Sandbox_RandomZombiesFull_Crawler_Day = "Crawlers Percent",
+  Sandbox_RandomZombiesFull_Crawler_Day_tooltip = "Percentage of Crawlers present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_Shambler_Day = "Shamblers Percent",
+  Sandbox_RandomZombiesFull_Shambler_Day_tooltip = "Percentage of Shamblers present in the world. Percentage of Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_FastShambler_Day = "Fast Shamblers Percent",
+  Sandbox_RandomZombiesFull_FastShambler_Day_tooltip = "Percentage of Fast Shamblers present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+  Sandbox_RandomZombiesFull_Sprinter_Day = "Sprinters Percent",
+  Sandbox_RandomZombiesFull_Sprinter_Day_tooltip = "Percentage of Sprinters present in the world. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
+
+  Sandbox_RandomZombiesFull_Fragile_Day = "Fragile Percent",
+  Sandbox_RandomZombiesFull_Fragile_Day_tooltip = "Percentage of Fragile zombies present in the world. Fragile, Normal and Tough must add up to 100.",
+  Sandbox_RandomZombiesFull_Normal_Day = "Average Percent",
+  Sandbox_RandomZombiesFull_Normal_Day_tooltip = "Percentage of zombies with normal toughness present in the world. Fragile, Normal and Tough must add up to 100.",
+  Sandbox_RandomZombiesFull_Tough_Day = "Tough Percent",
+  Sandbox_RandomZombiesFull_Tough_Day_tooltip = "Percentage of Tough zombies present in the world. Fragile, Normal and Tough must add up to 100.",
+
+  Sandbox_RandomZombiesFull_Smart_Day = "Smart Percent"
+  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentage of Smart zombies present in the world. These zombies can open doors and have hightened senses.",
+}

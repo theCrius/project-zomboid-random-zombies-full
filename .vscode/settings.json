@@ -1,0 +1,8 @@
+{
+    "Lua.diagnostics.globals": [
+        "SandboxVars",
+        "Events",
+        "GameTime",
+        "getGameTime"
+    ]
+}
