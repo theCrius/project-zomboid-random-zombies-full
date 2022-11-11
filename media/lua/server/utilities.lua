@@ -1,5 +1,11 @@
 local utilities = {}
 
+-- we want 2^p bits
+local P = 16
+-- OnlineID defined as a short as of 41.71+
+local MAXVALUE = 2^P
+local TWO_32 = 2^32
+
 -- Validate the sandbox options' values
 utilities.ValidateConfiguration = function()
   if not SandboxVars.RandomZombiesFull then
@@ -118,11 +124,15 @@ utilities.DetectPreset = function(startHour, endHour)
   return detectedPreset
 end
 
--- we want 2^p bits
-local p = 16
--- OnlineID defined as a short as of 41.71+
-local maxValue = 2^p
-local two_32 = 2^32
+-- search for a field in an object
+utilities.findField = function(o, fname)
+  for i = 0, getNumClassFields(o) - 1 do
+    local f = getClassField(o, i)
+    if tostring(f) == fname then
+      return f
+    end
+  end
+end
 
 -- Custom made module function
 utilities.modulo =  function(a, b)
@@ -141,20 +151,20 @@ end
 -- Return hash of an entity
 utilities.hash = function(x)
   -- (x*2654435769 % 2^32) >> (32 - p)
-  x = utilities.modulo(x*2654435769, two_32)
-  return utilities.shiftRight(x, 32-p)
+  x = utilities.modulo(x*2654435769, TWO_32)
+  return utilities.shiftRight(x, 32-P)
 end
 
 -- Custom made hashToSlice
 utilities.hashToSlice = function(h)
-  return math.floor((h / maxValue) * 10000)
+  return math.floor((h / MAXVALUE) * 10000)
 end
 
 -- Return the ZombieId of a Zombie Entity
 utilities.zombieID = function(zombie)
   local id = zombie:getOnlineID()
   if id == -1 then
-    id = utilities.modulo(zombie:hashCode(), maxValue)
+    id = utilities.modulo(zombie:hashCode(), MAXVALUE)
   end
 
   return utilities.hash(id)
