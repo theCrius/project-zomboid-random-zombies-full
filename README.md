@@ -70,6 +70,6 @@ SandboxVars = {
 ## Credits
 
 - [Project Zomboid Tutorials](https://theindiestone.com/forums/index.php?/forum/53-tutorials-resources/)
-- [Project Zomboid Wiki - Lua Events](https://pzwiki.net/wiki/Modding:Lua_Events)
+- [Project Zomboid Wiki - Modding](https://pzwiki.net/wiki/Modding)
 - Random Zombies by "belette" - used to understand how to properly distribute the ratio of zombies
 - Night Sprinters by "The Illuminati" - used to understand how to manage the time and switch between the different presets
