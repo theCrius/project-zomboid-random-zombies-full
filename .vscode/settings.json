@@ -3,6 +3,10 @@
         "SandboxVars",
         "Events",
         "GameTime",
-        "getGameTime"
+        "getGameTime",
+        "getTimestampMs",
+        "DebugLog",
+        "getFileWriter",
+        "getCell"
     ]
 }
