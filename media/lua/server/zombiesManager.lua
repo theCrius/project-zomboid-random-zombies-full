@@ -1,6 +1,21 @@
 local utilities = require('utilities')
 local zombiesManager = {}
 
+-- Default Values from Core
+local SPEED_SPRINTER        = 1
+local SPEED_FAST_SHAMBLER   = 2
+local SPEED_SHAMBLER        = 3
+local COGNITION_SMART       = 1
+local COGNITION_DEFAULT     = 3
+local COGNITION_RANDOM      = 4
+
+-- Shared variables for the module
+zombiesManager.tickFrequency = 10
+zombiesManager.lastTicks = {16, 16, 16, 16, 16}
+zombiesManager.lastTicksIdx = 1
+zombiesManager.last = getTimestampMs()
+zombiesManager.tickCount = 0
+
 -- return the distribution based on the preset to be activated
 zombiesManager.activatePreset = function(requestedPreset)
     local ZombieDistribution = {}
