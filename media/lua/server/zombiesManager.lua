@@ -1,6 +1,7 @@
 local utilities = require('utilities')
 local zombiesManager = {}
 
+-- return the distribution based on the preset to be activated
 zombiesManager.activatePreset = function(requestedPreset)
     local ZombieDistribution = {}
     ZombieDistribution.crawler = math.floor(100 * requestedPreset.crawler)
@@ -13,6 +14,8 @@ zombiesManager.activatePreset = function(requestedPreset)
     ZombieDistribution.Tough = ZombieDistribution.NormalTough + math.floor(100 * requestedPreset.Tough)
 
     ZombieDistribution.Smart = math.floor(100 * requestedPreset.Smart)
+
+    return ZombieDistribution
 end
 
 return zombiesManager
