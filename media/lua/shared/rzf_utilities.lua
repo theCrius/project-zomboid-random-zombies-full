@@ -8,8 +8,8 @@ local TWO_32 = 2^32
 
 -- Validate the sandbox options' values
 utilities.ValidateConfiguration = function()
-  if not SandboxVars.RandomZombiesFull then
-    error("No RandomZombiesFull key in config")
+  if not type(SandboxVars.RandomZombiesFull) == "table" then
+    error("No RandomZombiesFull table in config")
   end
 
   if not (type(SandboxVars.RandomZombiesFull.Crawler_Night) == "number" and
@@ -61,8 +61,6 @@ utilities.ValidateConfiguration = function()
     ~= 100 then
     error("Fragile, Normal and Tough for the Day Settings do not add up to 100")
   end
-
-  return true
 end
 
 utilities.LoadConfiguration = function()
@@ -108,20 +106,6 @@ utilities.LoadConfiguration = function()
   }
 
   return configuration
-end
-
--- Determine che right preset to use. Return 'nightTime' or 'dayTime'
-utilities.DetectPreset = function(startHour, endHour)
-  local hourOfDay = getGameTime():getTimeOfDay();
-  local detectedPreset = nil
-
-  if (hourOfDay >= startHour and hourOfDay < endHour) then
-      detectedPreset = 'nightTime';
-  else
-      detectedPreset = 'dayTime';
-  end
-
-  return detectedPreset
 end
 
 -- search for a field in an object
@@ -174,7 +158,7 @@ end
 utilities.time = function(tag, fn)
   local ts = getTimestampMs()
   fn()
-  DebugLog.log(string.format("RandomZombiesFull.%s: %dms", tag, getTimestampMs() - ts))
+  print("RandomZombiesFull.%s: %dms", tag, getTimestampMs() - ts)
 end
 
 
@@ -189,7 +173,7 @@ utilities.called = function(tag, m)
 
   if currentCount % m == 0 then
     local diffMs = getTimestampMs() - startMs
-    DebugLog.log(string.format("RandomZombiesFull.%s: %d/s", tag, currentCount*1000 / diffMs))
+    print("RandomZombiesFull.%s: %d/s", tag, currentCount*1000 / diffMs)
   end
 end
 

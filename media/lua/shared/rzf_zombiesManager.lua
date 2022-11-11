@@ -1,4 +1,4 @@
-local utilities = require('utilities')
+local utilities = nil
 local zombiesManager = {}
 
 -- Default Values from Core
@@ -15,6 +15,9 @@ zombiesManager.lastTicks = {16, 16, 16, 16, 16}
 zombiesManager.lastTicksIdx = 1
 zombiesManager.last = getTimestampMs()
 zombiesManager.tickCount = 0
+
+zombiesManager.zombieDistribution = {}
+zombiesManager.updateFrequency = 1000
 
 -- return the distribution based on the preset to be activated
 zombiesManager.activatePreset = function(requestedPreset)
@@ -160,56 +163,63 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
 
 -- Update all zombies in a cell according to the active distribution
 zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
-    zombiesManager.tickCount = zombiesManager.tickCount + 1
-    if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
-        return
-    end
-    zombiesManager.tickCount = 1
+  zombiesManager.tickCount = zombiesManager.tickCount + 1
+  if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
+      return
+  end
+  zombiesManager.tickCount = 1
 
-    local now = getTimestampMs()
-    local diff = now - zombiesManager.last
-    zombiesManager.last = now
+  local now = getTimestampMs()
+  local diff = now - zombiesManager.last
+  zombiesManager.last = now
 
-    local tickMs = diff / zombiesManager.tickFrequency
-    zombiesManager.lastTicks[zombiesManager.lastTicksIdx] = tickMs
-    zombiesManager.lastTicksIdx = (zombiesManager.lastTicksIdx % 5) + 1
-    local totalTicks = 0
-    local sumTicks = 0
-    for _, v in ipairs(zombiesManager.lastTicks) do
-        sumTicks = sumTicks + v
-        totalTicks = totalTicks + 1
-    end
+  local tickMs = diff / zombiesManager.tickFrequency
+  zombiesManager.lastTicks[zombiesManager.lastTicksIdx] = tickMs
+  zombiesManager.lastTicksIdx = (zombiesManager.lastTicksIdx % 5) + 1
+  local totalTicks = 0
+  local sumTicks = 0
+  for _, v in ipairs(zombiesManager.lastTicks) do
+      sumTicks = sumTicks + v
+      totalTicks = totalTicks + 1
+  end
 
-    local avgTickMs = sumTicks / totalTicks
-    zombiesManager.tickFrequency = math.max(2, math.ceil(updateFrequency / avgTickMs))
+  local avgTickMs = sumTicks / totalTicks
+  zombiesManager.tickFrequency = math.max(2, math.ceil(updateFrequency / avgTickMs))
 
-    local zs = getCell():getZombieList()
-    local sz = zs:size()
+  local zs = getCell():getZombieList()
+  local sz = zs:size()
 
-    local bob = utilities.IsoZombie.new(nil)
-    local cognition =
-    utilities.findField(bob, "public int zombie.characters.IsoZombie.cognition")
-    local speedType =
-    utilities.findField(bob, "public int zombie.characters.IsoZombie.speedType")
-    local client = isClient()
-    for i = 0, sz - 1 do
-        local z = zs:get(i)
-        if not (client and z:isRemoteZombie()) then
-            zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
-        end
-    end
+  local bob = IsoZombie.new(nil)
+  local cognition = utilities.findField(bob, "public int zombie.characters.IsoZombie.cognition")
+  local speedType = utilities.findField(bob, "public int zombie.characters.IsoZombie.speedType")
+  local client = isClient()
+  for i = 0, sz - 1 do
+      local z = zs:get(i)
+      if not (client and z:isRemoteZombie()) then
+          print("updating zombie", utilities.zombieID(z))
+          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
+      end
+  end
+end
+
+zombiesManager.updateAllZombiesWithParams = function()
+  zombiesManager.updateAllZombies(zombiesManager.zombieDistribution, zombiesManager.updateFrequency)
 end
 
 -- enable the process of updating the zombies
-zombiesManager.enable = function(zombieDistribution, updateFrequency)
-    local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
-    zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
-    Events.OnTick.Add(zombiesManager.updateAllZombies(zombieDistribution, updateFrequency))
+zombiesManager.enable = function(zombieDistribution, updateFrequency, utilitiesModule)
+  print ("ZombieManager enabled with update frequency of", updateFrequency)
+  utilities = utilitiesModule
+  local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
+  zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
+  zombiesManager.zombieDistribution = zombieDistribution
+  zombiesManager.updateFrequency = updateFrequency
+  Events.OnTick.Add(zombiesManager.updateAllZombiesWithParams)
 end
 
 -- disable the process of updating the zombies
 zombiesManager.disable = function ()
-    Events.OnTick.Remove(zombiesManager.updateAllZombies)
+    Events.OnTick.Remove(zombiesManager.updateAllZombiesWithParams)
 end
 
 return zombiesManager

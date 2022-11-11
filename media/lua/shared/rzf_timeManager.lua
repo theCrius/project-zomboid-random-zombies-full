@@ -24,4 +24,18 @@ timeManager.GetEndTime = function(timeSchedule)
 	return timeSchedule.winter.endTime
 end
 
+-- Determine che right preset to use. Return 'nightTime' or 'dayTime'
+timeManager.DetectPreset = function(startHour, endHour)
+	local hourOfDay = getGameTime():getTimeOfDay();
+	local detectedPreset = nil
+  
+	if (hourOfDay >= startHour and hourOfDay < endHour) then
+		detectedPreset = 'nightTime';
+	else
+		detectedPreset = 'dayTime';
+	end
+  
+	return detectedPreset
+  end
+
 return timeManager
