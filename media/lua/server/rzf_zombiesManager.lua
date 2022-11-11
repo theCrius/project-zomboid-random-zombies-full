@@ -20,15 +20,15 @@ zombiesManager.tickCount = 0
 zombiesManager.activatePreset = function(requestedPreset)
     local ZombieDistribution = {}
     ZombieDistribution.crawler = math.floor(100 * requestedPreset.crawler)
-    ZombieDistribution.shambler = ZombieDistribution.crawler + math.floor(100 * requestedPreset.Shambler)
-    ZombieDistribution.fastShambler = ZombieDistribution.shambler + math.floor(100 * requestedPreset.FastShambler)
-    ZombieDistribution.sprinter = ZombieDistribution.fastShambler + math.floor(100 * requestedPreset.Sprinter)
+    ZombieDistribution.shambler = ZombieDistribution.crawler + math.floor(100 * requestedPreset.shambler)
+    ZombieDistribution.fastShambler = ZombieDistribution.shambler + math.floor(100 * requestedPreset.fastShambler)
+    ZombieDistribution.sprinter = ZombieDistribution.fastShambler + math.floor(100 * requestedPreset.sprinter)
 
-    ZombieDistribution.Fragile = math.floor(100 * requestedPreset.Fragile)
-    ZombieDistribution.Normal = ZombieDistribution.Fragile + math.floor(100 * requestedPreset.NormalTough)
-    ZombieDistribution.Tough = ZombieDistribution.NormalTough + math.floor(100 * requestedPreset.Tough)
+    ZombieDistribution.fragile = math.floor(100 * requestedPreset.fragile)
+    ZombieDistribution.normal = ZombieDistribution.fragile + math.floor(100 * requestedPreset.normal)
+    ZombieDistribution.tough = ZombieDistribution.normal + math.floor(100 * requestedPreset.tough)
 
-    ZombieDistribution.Smart = math.floor(100 * requestedPreset.Smart)
+    ZombieDistribution.smart = math.floor(100 * requestedPreset.smart)
 
     return ZombieDistribution
 end

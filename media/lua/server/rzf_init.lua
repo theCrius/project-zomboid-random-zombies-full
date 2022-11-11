@@ -3,8 +3,8 @@ local zombiesManager = require('zombiesManager')
 local utilities = require('utilities')
 
 -- Mod "global" configuration
-local configuration = nil
-local currentPreset = nil
+local configuration = {}
+local currentPreset = ''
 
 -- Check the time and decide which preset to load for the zombies
 local function UpdatePreset()
@@ -12,7 +12,7 @@ local function UpdatePreset()
     if currentPreset ~= detectedPreset then
         local zombieDistribution = zombiesManager.activatePreset(configuration[detectedPreset])
         zombiesManager.disable()
-        zombiesManager.enable(zombieDistribution, currentPreset.updateFrequency)
+        zombiesManager.enable(zombieDistribution, configuration.updateFrequency)
         currentPreset = detectedPreset
     end
 end
@@ -21,8 +21,8 @@ end
 local function init()
     utilities.ValidateConfiguration()
     configuration = utilities.LoadConfiguration()
-    UpdatePreset()
+    Events.OnServerStarted.Add(UpdatePreset);
+    Events.EveryHours.Add(UpdatePreset)
 end
 
 Events.OnGameStart.Add(init);
-Events.EveryHours.Add(UpdatePreset)
