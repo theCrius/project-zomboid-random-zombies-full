@@ -145,6 +145,11 @@ utilities.hash = function(x)
   return utilities.shiftRight(x, 32-p)
 end
 
+-- Custom made hashToSlice
+utilities.hashToSlice = function(h)
+  return math.floor((h / maxValue) * 10000)
+end
+
 -- Return the ZombieId of a Zombie Entity
 utilities.zombieID = function(zombie)
   local id = zombie:getOnlineID()
@@ -155,9 +160,27 @@ utilities.zombieID = function(zombie)
   return utilities.hash(id)
 end
 
--- Custom made hashToSlice
-utilities.hashToSlice = function(h)
-  return math.floor((h / maxValue) * 10000)
+-- log time to execute a function
+utilities.time = function(tag, fn)
+  local ts = getTimestampMs()
+  fn()
+  DebugLog.log(string.format("RandomZombiesFull.%s: %dms", tag, getTimestampMs() - ts))
+end
+
+
+utilities.callCounts = {};
+-- log calls from the mod
+utilities.called = function(tag, m)
+  m = m or 10
+  local startMs = getTimestampMs()
+  local currentCount = utilities.callCounts[tag] or 0
+  currentCount = currentCount + 1
+  utilities.callCounts[tag] = currentCount
+
+  if currentCount % m == 0 then
+    local diffMs = getTimestampMs() - startMs
+    DebugLog.log(string.format("RandomZombiesFull.%s: %d/s", tag, currentCount*1000 / diffMs))
+  end
 end
 
 return utilities
