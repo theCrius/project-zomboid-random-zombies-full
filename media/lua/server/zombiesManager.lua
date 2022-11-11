@@ -33,93 +33,183 @@ zombiesManager.activatePreset = function(requestedPreset)
     return ZombieDistribution
 end
 
--- Check for the hashes of zombies' distribution
-zombiesManager.hashCheck = function(ZombieDistribution)
-    local filename = "RandomZombiesFull-hashcheck-linear.txt"
-    local fw = getFileWriter(filename, true, false)
-    if not fw then
-      error("could not get file writer to " .. (filename or "nil"))
+-- Check if zombie can actually stand up
+zombiesManager.shouldBeStanding = function(zombie)
+    return not zombie:isKnockedDown()
+        and zombie:getCrawlerType() == 0
+        and not zombie:wasFakeDead()
+end
+
+zombiesManager.updateSpeed = function(zombie, targetSpeed, actualSpeed)
+    local didChange = false
+    if actualSpeed ~= targetSpeed then
+        getSandboxOptions():set("ZombieLore.Speed", targetSpeed)
+        zombie:makeInactive(true)
+        zombie:makeInactive(false)
+        getSandboxOptions():set("ZombieLore.Speed", SPEED_FAST_SHAMBLER)
+        didChange = true
     end
-    local zombiesCount = {
-      crawler = 0,
-      crawlerSmart = 0,
-      shambler = 0,
-      shamblerSmart = 0,
-      fastShambler = 0,
-      fastShamblerSmart = 0,
-      sprinter = 0,
-      sprinterSmart = 0,
-      total = 0,
-    }
-    local distribution = zombiesManager.activatePreset(ZombieDistribution)
+    return didChange
+end
 
-    for i=-2^15, 2^15 do
-      local h = utilities.hash(i)
-      local slice = utilities.hashToSlice(h)
-      local hh = utilities.hash(h)
-      local slice2 = utilities.hashToSlice(hh)
-      local hhh = utilities.hash(hh)
+zombiesManager.updateCognition = function(zombie, targetCognition, actualCognition, cognition)
+    local didChange = false
+    if targetCognition == COGNITION_SMART and actualCognition ~= COGNITION_SMART  then
+        didChange = true
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_SMART)
+        zombie:DoZombieStats()
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
+    elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_SMART then
+        didChange = true
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_RANDOM)
+        while getClassFieldVal(zombie, cognition) == COGNITION_SMART do
+            zombie:DoZombieStats()
+        end
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
+    end
+    return didChange
+end
 
-      if slice < distribution.crawler then
-        zombiesCount.crawler = zombiesCount.crawler + 1
-        if slice2 < distribution.Smart then
-          zombiesCount.crawlerSmart = zombiesCount.crawlerSmart + 1
-        end
-      elseif slice < distribution.shambler then
-        zombiesCount.shambler = zombiesCount.shambler + 1
-        if slice2 < distribution.Smart then
-          zombiesCount.shamblerSmart = zombiesCount.shamblerSmart + 1
-        end
-      elseif slice < distribution.fastShambler then
-        zombiesCount.fastShambler = zombiesCount.fastShambler + 1
-        if slice2 < distribution.Smart then
-          zombiesCount.fastShamblerSmart = zombiesCount.fastShamblerSmart + 1
-        end
-      else
-        zombiesCount.sprinter = zombiesCount.sprinter + 1
-        if slice2 < distribution.Smart then
-          zombiesCount.sprinterSmart = zombiesCount.sprinterSmart + 1
-        end
+-- Update a single zombie according to parameters passed
+zombiesManager.updateZombie = function(zombie, distribution, speedType, cognition)
+    local modData = zombie:getModData()
+    local speedTypeVal = getClassFieldVal(zombie, speedType)
+    local cognitionVal = getClassFieldVal(zombie, cognition)
+    local crawlingVal = zombie:isCrawling()
+    local square = zombie:getCurrentSquare()
+    local squareXVal = square and square:getX() or 0
+    local squareYVal = square and square:getY() or 0
+
+    -- NOTE (RandomZombie - Belette) we have to include X and Y in the check to catch zombies that have been recycled
+    -- from _intended_ default state (i.e. RZ happened to assign it to default bucket) to _unintended_
+    -- default state (i.e. RZ would not assign it to the default bucket, even though it's the same zombie)
+    -- see IsoZombie::resetForReuse and VirtualZombieManager::createRealZombieAlways for more info
+    local shouldSkip = speedTypeVal == modData.BLTspeed and cognitionVal == modData.BLTcog and crawlingVal == modData.BLTcrawl and math.abs(squareXVal - modData.BLTx) <= 20 and math.abs(squareYVal - modData.BLTy) <= 20
+
+    -- NOTE (RandomZombie - Belette) we check for square to avoid crash in Java engine postupdate calls later
+    if shouldSkip or (not square) then
+      return true
+    end
+
+    local zid = utilities.zombieID(zombie) 
+    local slice = utilities.hashToSlice(zid)
+
+    -- update speed
+    if slice < distribution.crawler then
+      if not zombie:isCrawling() then
+        zombie:toggleCrawling()
+        zombie:setCanWalk(false);
+        zombie:setFallOnFront(true)
       end
-      zombiesCount.total = zombiesCount.total + 1
+    elseif slice < distribution.shambler then
+      zombiesManager.updateSpeed(zombie, SPEED_SHAMBLER, speedTypeVal)
+      if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
+        zombie:toggleCrawling()
+        zombie:setCanWalk(true);
+      end
+    elseif slice < distribution.fastShambler then
+        zombiesManager.updateSpeed(zombie, SPEED_FAST_SHAMBLER, speedTypeVal)
+      if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
+        zombie:toggleCrawling()
+        zombie:setCanWalk(true);
+      end
+    else
+        zombiesManager.updateSpeed(zombie, SPEED_SPRINTER, speedTypeVal)
+      if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
+        zombie:toggleCrawling()
+        zombie:setCanWalk(true);
+      end
+    end
 
-      fw:write(string.format("%d -> %d -> %d -> %d -> %s\r\n", i, h, hh, hhh, tostring(slice)))
+    -- update cognition
+    if distribution.smart > 0 then
+      zid = utilities.hash(zid)
+      local slice2 = utilities.hashToSlice(zid)
+      if slice2 < distribution.smart then
+        zombiesManager.updateCognition(zombie, COGNITION_SMART, cognitionVal, cognition)
+      else
+        zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
+      end
     end
-    fw:write(string.format(
-               "crawler:%.2f%% (%d), shambler:%.2f%%, fastshambler:%.2f%%, sprinter:%.2f%% (%d)\r\n",
-               zombiesCount.Crawler*100/zombiesCount.total,
-               zombiesCount.Crawler,
-               zombiesCount.Shambler*100/zombiesCount.total,
-               zombiesCount.FastShambler*100/zombiesCount.total,
-               zombiesCount.Sprinter*100/zombiesCount.total,
-               zombiesCount.Sprinter))
-    fw:write(string.format(
-               "[smart] crawler:%.2f%% (%d), shambler:%.2f%% (%d), fastshambler:%.2f%% (%d), sprinter:%.2f%% (%d)\r\n",
-               zombiesCount.CrawlerSmart*100/zombiesCount.Crawler,
-               zombiesCount.CrawlerSmart,
-               zombiesCount.ShamblerSmart*100/zombiesCount.Shambler,
-               zombiesCount.ShamblerSmart,
-               zombiesCount.FastShamblerSmart*100/zombiesCount.FastShambler,
-               zombiesCount.FastShamblerSmart,
-               zombiesCount.SprinterSmart*100/zombiesCount.Sprinter,
-               zombiesCount.SprinterSmart))
-    fw:close()
-    print("wrote to " .. filename)
 
-    filename = "RandomZombiesFull-hashcheck-zombies.txt"
-    fw = getFileWriter(filename, true, false)
-    if not fw then
-      error("could not get file writer to " .. (filename or "nil"))
+    -- update toughness
+    if distribution.normal ~= 100 then
+      if not zombie:getAttackedBy() then
+        zid = utilities.hash(zid)
+        local slice3 = utilities.hashToSlice(zid)
+        local health = 0.1 * ZombRand(4)
+        if slice3 < distribution.fragile  then
+          health = health + 0.5
+        elseif slice3 < distribution.tough then
+          health = health + 1.5
+        else
+          health = health + 3.5
+        end
+        zombie:setHealth(health)
+      end
     end
-    local zs = getCell():getZombieList()
-    for i=0, zs:size() - 1 do
-      local zid = utilities.zombieID(zs:get(i))
-      local hh = utilities.hash(zid)
-      local hhh = utilities.hash(zid)
-      fw:write(string.format("%d -> %d -> %d\r\n", zid, utilities.hashToSlice(zid), utilities.hashToSlice(hh), utilities.hashToSlice(hhh)))
-    end
-    fw:close()
-    print("wrote to " .. filename)
+
+    modData.speed = getClassFieldVal(zombie, speedType)
+    modData.cognition = getClassFieldVal(zombie, cognition)
+    modData.crawling = zombie:isCrawling()
+    modData.x = squareXVal
+    modData.y = squareYVal
+
+    return false
   end
+
+-- Update all zombies in a cell according to the active distribution
+zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
+    zombiesManager.tickCount = zombiesManager.tickCount + 1
+    if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
+        return
+    end
+    zombiesManager.tickCount = 1
+
+    local now = getTimestampMs()
+    local diff = now - zombiesManager.last
+    zombiesManager.last = now
+
+    local tickMs = diff / zombiesManager.tickFrequency
+    zombiesManager.lastTicks[zombiesManager.lastTicksIdx] = tickMs
+    zombiesManager.lastTicksIdx = (zombiesManager.lastTicksIdx % 5) + 1
+    local totalTicks = 0
+    local sumTicks = 0
+    for _, v in ipairs(zombiesManager.lastTicks) do
+        sumTicks = sumTicks + v
+        totalTicks = totalTicks + 1
+    end
+
+    local avgTickMs = sumTicks / totalTicks
+    zombiesManager.tickFrequency = math.max(2, math.ceil(updateFrequency / avgTickMs))
+
+    local zs = getCell():getZombieList()
+    local sz = zs:size()
+
+    local bob = utilities.IsoZombie.new(nil)
+    local cognition =
+    utilities.findField(bob, "public int zombie.characters.IsoZombie.cognition")
+    local speedType =
+    utilities.findField(bob, "public int zombie.characters.IsoZombie.speedType")
+    local client = isClient()
+    for i = 0, sz - 1 do
+        local z = zs:get(i)
+        if not (client and z:isRemoteZombie()) then
+            zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
+        end
+    end
+end
+
+-- enable the process of updating the zombies
+zombiesManager.enable = function(zombieDistribution, updateFrequency)
+    local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
+    zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
+    Events.OnTick.Add(zombiesManager.updateAllZombies(zombieDistribution, updateFrequency))
+end
+
+-- disable the process of updating the zombies
+zombiesManager.disable = function ()
+    Events.OnTick.Remove(zombiesManager.updateAllZombies)
+end
 
 return zombiesManager
