@@ -1,3 +1,4 @@
+local utilities = require('utilities')
 local zombiesManager = {}
 
 zombiesManager.activatePreset = function(requestedPreset)
