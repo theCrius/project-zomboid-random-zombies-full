@@ -1,6 +1,6 @@
-local timeManager = require('../shared/rzf_timeManager')
-local zombiesManager = require('../shared/rzf_zombiesManager')
-local utilities = require('../shared/rzf_utilities')
+local timeManager = require('rzf_timeManager')
+local zombiesManager = require('rzf_zombiesManager')
+local utilities = require('rzf_utilities')
 
 -- Mod "global" configuration
 local configuration = {}
@@ -33,11 +33,6 @@ local function LoadConfiguration()
     end
 end
 
--- Initialize the mod
-local function Init()
-    print("[RZF] In Init (Server)")
-    Events.OnServerStarted.Add(LoadConfiguration)
-end
-
 print("[RZF] Starting (Server)")
-Events.OnGameStart.Add(Init)
+Events.OnGameStart.Add(LoadConfiguration)
+Events.OnServerStarted.Add(LoadConfiguration)
