@@ -10,7 +10,9 @@ local currentPreset = nil
 local function UpdatePreset()
     local detectedPreset = utilities.DetectPreset(timeManager.GetStartTime(configuration.schedule), timeManager.GetEndTime(configuration.schedule))
     if currentPreset ~= detectedPreset then
-        zombiesManager.activatePreset(configuration[detectedPreset])
+        local zombieDistribution = zombiesManager.activatePreset(configuration[detectedPreset])
+        zombiesManager.disable()
+        zombiesManager.enable(zombieDistribution, currentPreset.updateFrequency)
         currentPreset = detectedPreset
     end
 end
