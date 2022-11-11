@@ -7,6 +7,14 @@
         "getTimestampMs",
         "DebugLog",
         "getFileWriter",
-        "getCell"
+        "getCell",
+        "DebugContextMenu",
+        "getPlayer",
+        "getNumClassFields",
+        "getClassField",
+        "isClient",
+        "getClassFieldVal",
+        "getSandboxOptions",
+        "ZombRand"
     ]
 }
