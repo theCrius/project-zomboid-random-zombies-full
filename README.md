@@ -46,14 +46,6 @@ SandboxVars = {
         Winter_Night_End = 6,
         Spring_Night_Start = 22,
         Spring_Night_End = 6,
-        Crawler_Night = 5,
-        Shambler_Night = 25,
-        FastShambler_Night = 65,
-        Sprinter_Night = 5,
-        Fragile_Night = 30,
-        Normal_Night = 50,
-        Tough_Night = 20,
-        Smart_Night = 5,
         Crawler_Day = 5,
         Shambler_Day = 25,
         FastShambler_Day = 65,
@@ -61,7 +53,15 @@ SandboxVars = {
         Fragile_Day = 30,
         Normal_Day = 50,
         Tough_Day = 20,
-        Smart_Day = 5
+        Smart_Day = 5,
+        Crawler_Night = 5,
+        Shambler_Night = 25,
+        FastShambler_Night = 65,
+        Sprinter_Night = 5,
+        Fragile_Night = 30,
+        Normal_Night = 50,
+        Tough_Night = 20,
+        Smart_Night = 5
     },
     [...]
 }
