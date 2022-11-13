@@ -9,7 +9,7 @@ local TWO_32 = 2^32
 -- Validate the sandbox options' values
 utilities.ValidateConfiguration = function()
   if not type(SandboxVars.RandomZombiesFull) == "table" then
-    error("No RandomZombiesFull table in config")
+    error("[RZF] No RandomZombiesFull table in config")
   end
 
   if not (type(SandboxVars.RandomZombiesFull.Crawler_Night) == "number" and
@@ -29,7 +29,7 @@ utilities.ValidateConfiguration = function()
     type(SandboxVars.RandomZombiesFull.Tough_Day) == "number" and
     type(SandboxVars.RandomZombiesFull.Smart_Day) == "number")
   then
-    error("config value is not a number for the Night Settings")
+    error("[RZF] Config value is not a number for the Night Settings")
   end
 
   if SandboxVars.RandomZombiesFull.Crawler_Night +
@@ -37,7 +37,7 @@ utilities.ValidateConfiguration = function()
     SandboxVars.RandomZombiesFull.FastShambler_Night +
     SandboxVars.RandomZombiesFull.Sprinter_Night
     ~= 100 then
-    error("Crawler, Shambler, FastShambler and Sprinter for the Night Settings do not add up to 100")
+    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Night Settings do not add up to 100")
   end
 
   if SandboxVars.RandomZombiesFull.Crawler_Day +
@@ -45,21 +45,21 @@ utilities.ValidateConfiguration = function()
     SandboxVars.RandomZombiesFull.FastShambler_Day +
     SandboxVars.RandomZombiesFull.Sprinter_Day
     ~= 100 then
-    error("Crawler, Shambler, FastShambler and Sprinter for the Day Settings do not add up to 100")
+    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Day Settings do not add up to 100")
   end
 
   if SandboxVars.RandomZombiesFull.Fragile_Night +
     SandboxVars.RandomZombiesFull.Normal_Night +
     SandboxVars.RandomZombiesFull.Tough_Night
     ~= 100 then
-    error("Fragile, Normal and Tough for the Night Settings do not add up to 100")
+    error("[RZF] Fragile, Normal and Tough for the Night Settings do not add up to 100")
   end
 
   if SandboxVars.RandomZombiesFull.Fragile_Day +
     SandboxVars.RandomZombiesFull.Normal_Day +
     SandboxVars.RandomZombiesFull.Tough_Day
     ~= 100 then
-    error("Fragile, Normal and Tough for the Day Settings do not add up to 100")
+    error("[RZF] Fragile, Normal and Tough for the Day Settings do not add up to 100")
   end
 end
 
@@ -108,12 +108,12 @@ utilities.LoadConfiguration = function()
   return configuration
 end
 
--- search for a field in an object
-utilities.findField = function(o, fname)
-  for i = 0, getNumClassFields(o) - 1 do
-    local f = getClassField(o, i)
-    if tostring(f) == fname then
-      return f
+-- search for function in an object
+utilities.findField = function(obj, fname)
+  for i = 0, getNumClassFields(obj) - 1 do
+    local fn = getClassField(obj, i)
+    if tostring(fn) == fname then
+      return fn
     end
   end
 end
@@ -152,29 +152,6 @@ utilities.zombieID = function(zombie)
   end
 
   return utilities.hash(id)
-end
-
--- log time to execute a function
-utilities.time = function(tag, fn)
-  local ts = getTimestampMs()
-  fn()
-  print("RandomZombiesFull.%s: %dms", tag, getTimestampMs() - ts)
-end
-
-
-utilities.callCounts = {};
--- log calls from the mod
-utilities.called = function(tag, m)
-  m = m or 10
-  local startMs = getTimestampMs()
-  local currentCount = utilities.callCounts[tag] or 0
-  currentCount = currentCount + 1
-  utilities.callCounts[tag] = currentCount
-
-  if currentCount % m == 0 then
-    local diffMs = getTimestampMs() - startMs
-    print("RandomZombiesFull.%s: %d/s", tag, currentCount*1000 / diffMs)
-  end
 end
 
 return utilities
