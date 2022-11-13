@@ -1,4 +1,4 @@
-local utilities = nil
+local utilities = require("rzf_utilities")
 local zombiesManager = {}
 
 -- Default Values from Core
@@ -97,6 +97,8 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
     local zid = utilities.zombieID(zombie) 
     local slice = utilities.hashToSlice(zid)
 
+    -- print("[RZF] Updating zombie with ID ", zid)
+
     -- update speed
     if slice < distribution.crawler then
       if not zombie:isCrawling() then
@@ -167,6 +169,7 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
       return
   end
+  print("[RZF] Updating zombies...")
   zombiesManager.tickCount = 1
 
   local now = getTimestampMs()
@@ -189,17 +192,17 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   local zs = getCell():getZombieList()
   local sz = zs:size()
 
-  local bob = IsoZombie.new(nil)
-  local cognition = utilities.findField(bob, "public int zombie.characters.IsoZombie.cognition")
-  local speedType = utilities.findField(bob, "public int zombie.characters.IsoZombie.speedType")
+  local ZombieObj = IsoZombie.new(nil)
+  local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
+  local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
   local client = isClient()
   for i = 0, sz - 1 do
       local z = zs:get(i)
       if not (client and z:isRemoteZombie()) then
-          print("updating zombie", utilities.zombieID(z))
           zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
       end
   end
+  print("[RZF] Zombies updated in active cells")
 end
 
 zombiesManager.updateAllZombiesWithParams = function()
@@ -208,8 +211,7 @@ end
 
 -- enable the process of updating the zombies
 zombiesManager.enable = function(zombieDistribution, updateFrequency, utilitiesModule)
-  print ("ZombieManager enabled with update frequency of", updateFrequency)
-  utilities = utilitiesModule
+  print ("[RZF] ZombieManager enabled with update frequency of ", updateFrequency, " msec")
   local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
   zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
   zombiesManager.zombieDistribution = zombieDistribution
