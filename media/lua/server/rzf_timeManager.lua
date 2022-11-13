@@ -25,16 +25,24 @@ timeManager.GetEndTime = function(timeSchedule)
 end
 
 -- Determine che right preset to use. Return 'nightTime' or 'dayTime'
-timeManager.DetectPreset = function(startHour, endHour)
-	local hourOfDay = getGameTime():getTimeOfDay();
+timeManager.DetectPreset = function(schedule)
 	local detectedPreset = nil
-  
+	local hourOfDay = math.floor(getGameTime():getTimeOfDay());
+	local startHour = timeManager.GetStartTime(schedule)
+	local endHour = timeManager.GetEndTime(schedule)
+
+	print("[RZF] Night starts at ", startHour)
+	print("[RZF] Night ends at ", endHour)
+	print("[RZF] Current time is ", hourOfDay)
+
 	if (hourOfDay >= startHour and hourOfDay < endHour) then
+		detectedPreset = 'nightTime';
+	elseif (hourOfDay >= startHour or hourOfDay < endHour) and startHour > endHour then
 		detectedPreset = 'nightTime';
 	else
 		detectedPreset = 'dayTime';
 	end
-  
+
 	return detectedPreset
   end
 
