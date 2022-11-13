@@ -8,20 +8,20 @@ local currentPreset = ''
 
 -- Check the time and decide which preset to load for the zombies
 local function UpdatePreset()
-    print("[RZF] In UpdatePreset (Server)")
-    local detectedPreset = timeManager.DetectPreset(timeManager.GetStartTime(configuration.schedule), timeManager.GetEndTime(configuration.schedule))
-    print("[RZF] Server Preset detected -> ", detectedPreset)
+    local detectedPreset = timeManager.DetectPreset(configuration.schedule)
+    print("[RZF] Schedule detected -> ", detectedPreset)
     if currentPreset ~= detectedPreset then
+        print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset)
         local zombieDistribution = zombiesManager.activatePreset(configuration[detectedPreset])
         zombiesManager.disable()
         zombiesManager.enable(zombieDistribution, configuration.updateFrequency)
         currentPreset = detectedPreset
+        print("[RZF] Schedule Preset changed -> ", currentPreset)
     end
 end
 
 -- Load configuration from options
 local function LoadConfiguration()
-    print("[RZF] In LoadConfiguration (Server)")
     utilities.ValidateConfiguration()
     configuration = utilities.LoadConfiguration()
 
@@ -33,6 +33,6 @@ local function LoadConfiguration()
     end
 end
 
-print("[RZF] Starting (Server)")
+print("[RZF] Starting")
 Events.OnGameStart.Add(LoadConfiguration)
 Events.OnServerStarted.Add(LoadConfiguration)
