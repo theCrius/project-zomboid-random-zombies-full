@@ -38,6 +38,9 @@ SandboxVars = {
     [...],
     RandomZombiesFull = {
         Frequency = 7500,
+        Enable_Day = false,
+        Enable_Night = false,
+        Enable_Rain = false,
         Summer_Night_Start = 23,
         Summer_Night_End = 6,
         Autumn_Night_Start = 22,
@@ -47,8 +50,8 @@ SandboxVars = {
         Spring_Night_Start = 22,
         Spring_Night_End = 6,
         Crawler_Day = 5,
-        Shambler_Day = 25,
-        FastShambler_Day = 65,
+        Shambler_Day = 65,
+        FastShambler_Day = 25,
         Sprinter_Day = 5,
         Fragile_Day = 30,
         Normal_Day = 50,
@@ -61,7 +64,15 @@ SandboxVars = {
         Fragile_Night = 30,
         Normal_Night = 50,
         Tough_Night = 20,
-        Smart_Night = 5
+        Smart_Night = 5,
+        Crawler_Rain = 5,
+        Shambler_Rain = 5,
+        FastShambler_Rain = 25,
+        Sprinter_Rain = 65,
+        Fragile_Rain = 30,
+        Normal_Rain = 50,
+        Tough_Rain = 20,
+        Smart_Rain = 5
     },
     [...]
 }
