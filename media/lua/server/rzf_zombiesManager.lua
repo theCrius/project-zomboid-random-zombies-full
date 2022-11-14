@@ -211,7 +211,7 @@ end
 
 -- enable the process of updating the zombies
 zombiesManager.enable = function(zombieDistribution, updateFrequency, utilitiesModule)
-  print ("[RZF] ZombieManager enabled with update frequency of ", updateFrequency, " msec")
+  print ("[RZF] Override activated with update frequency of ", updateFrequency, " msec")
   local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
   zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
   zombiesManager.zombieDistribution = zombieDistribution
