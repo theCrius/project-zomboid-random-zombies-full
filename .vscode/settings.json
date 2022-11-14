@@ -15,6 +15,7 @@
         "getClassFieldVal",
         "getSandboxOptions",
         "ZombRand",
-        "IsoZombie"
+        "IsoZombie",
+        "RainManager"
     ]
 }
