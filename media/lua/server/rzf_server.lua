@@ -8,7 +8,6 @@ local currentPreset = 'default'
 
 -- Check if presets are actually enabled, expect input as 'dayTime', 'nightTime' or 'rainTime'
 local function isPresetEnabled(preset)
-    print("[RZF] Checking if preset ", preset, " is a valid preset and if enabled")
     if (preset ~= 'dayTime' and preset ~= 'nightTime' and preset ~= 'rainTime') then
         error("preset not recognized, accepted values are 'dayTime', 'nightTime' or 'rainTime'.")
     end
@@ -27,21 +26,23 @@ local function UpdatePreset()
     if (isPresetEnabled('rainTime')) then
         detectedPreset = timeManager.overrideWithRain(detectedPreset)
     end
-    print("[RZF] Schedule detected -> ", detectedPreset)
-    -- Check if the preset has changed and is enabled (includes day, night, rain)
-    if currentPreset ~= detectedPreset then
-        if (isPresetEnabled(detectedPreset)) then
+    print("[RZF] Schedule detected is ", detectedPreset)
+    print("[RZF] Checking if preset ", detectedPreset, " is enabled")
+    if (isPresetEnabled(detectedPreset)) then
+        if currentPreset ~= detectedPreset then
             print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset)
             local zombieDistribution = zombiesManager.activatePreset(configuration[detectedPreset])
             zombiesManager.disable()
             zombiesManager.enable(zombieDistribution, configuration.updateFrequency)
             currentPreset = detectedPreset
+            print("[RZF] Schedule Preset changed ---> ", currentPreset)
         else
-            print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset, " but the preset is not enabled.")
-            zombiesManager.disable()
-            currentPreset = 'default'
+            print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset, ". No change is necessary.")
         end
-        print("[RZF] Schedule Preset changed -> ", currentPreset)
+    else
+        print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset, " but the preset is not enabled.")
+        zombiesManager.disable()
+        currentPreset = 'default'
     end
 end
 
