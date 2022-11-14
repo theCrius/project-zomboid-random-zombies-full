@@ -24,16 +24,26 @@ timeManager.GetEndTime = function(timeSchedule)
 	return timeSchedule.winter.endTime
 end
 
+timeManager.overrideWithRain = function(detectedPreset)
+	local isRaining = RainManager:isRaining()
+	-- TODO: Future version might allow different thresholds, for now it's going to be just "it's raining"
+	-- local rainIntensity = RainManager:getRainIntensity()
+	-- local rainThreshold = 0
+
+	-- check if it's raining. If it is, rain override the time of day presets
+	if (isRaining) then
+		detectedPreset = 'rainTime'
+	end
+
+	return detectedPreset
+end
+
 -- Determine che right preset to use. Return 'nightTime' or 'dayTime'
 timeManager.DetectPreset = function(schedule)
 	local detectedPreset = nil
 	local hourOfDay = math.floor(getGameTime():getTimeOfDay());
 	local startHour = timeManager.GetStartTime(schedule)
 	local endHour = timeManager.GetEndTime(schedule)
-
-	print("[RZF] Night starts at ", startHour)
-	print("[RZF] Night ends at ", endHour)
-	print("[RZF] Current time is ", hourOfDay)
 
 	if (hourOfDay >= startHour and hourOfDay < endHour) then
 		detectedPreset = 'nightTime';
