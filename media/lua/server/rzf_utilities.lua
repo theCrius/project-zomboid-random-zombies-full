@@ -12,7 +12,15 @@ utilities.ValidateConfiguration = function()
     error("[RZF] No RandomZombiesFull table in config")
   end
 
-  if not (type(SandboxVars.RandomZombiesFull.Crawler_Night) == "number" and
+  if not (type(SandboxVars.RandomZombiesFull.Crawler_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Shambler_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.FastShambler_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Sprinter_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Fragile_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Normal_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Tough_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Smart_Day) == "number" and
+    type(SandboxVars.RandomZombiesFull.Crawler_Night) == "number" and
     type(SandboxVars.RandomZombiesFull.Shambler_Night) == "number" and
     type(SandboxVars.RandomZombiesFull.FastShambler_Night) == "number" and
     type(SandboxVars.RandomZombiesFull.Sprinter_Night) == "number" and
@@ -20,14 +28,14 @@ utilities.ValidateConfiguration = function()
     type(SandboxVars.RandomZombiesFull.Normal_Night) == "number" and
     type(SandboxVars.RandomZombiesFull.Tough_Night) == "number" and
     type(SandboxVars.RandomZombiesFull.Smart_Night) == "number" and
-    type(SandboxVars.RandomZombiesFull.Crawler_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Shambler_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.FastShambler_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Sprinter_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Fragile_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Normal_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Tough_Day) == "number" and
-    type(SandboxVars.RandomZombiesFull.Smart_Day) == "number")
+    type(SandboxVars.RandomZombiesFull.Crawler_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Shambler_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.FastShambler_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Sprinter_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Fragile_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Normal_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Tough_Rain) == "number" and
+    type(SandboxVars.RandomZombiesFull.Smart_Rain) == "number")
   then
     error("[RZF] Config value is not a number for the Night Settings")
   end
@@ -48,6 +56,14 @@ utilities.ValidateConfiguration = function()
     error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Day Settings do not add up to 100")
   end
 
+  if SandboxVars.RandomZombiesFull.Crawler_Rain +
+    SandboxVars.RandomZombiesFull.Shambler_Rain +
+    SandboxVars.RandomZombiesFull.FastShambler_Rain +
+    SandboxVars.RandomZombiesFull.Sprinter_Rain
+    ~= 100 then
+    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Rain Settings do not add up to 100")
+  end
+
   if SandboxVars.RandomZombiesFull.Fragile_Night +
     SandboxVars.RandomZombiesFull.Normal_Night +
     SandboxVars.RandomZombiesFull.Tough_Night
@@ -61,11 +77,21 @@ utilities.ValidateConfiguration = function()
     ~= 100 then
     error("[RZF] Fragile, Normal and Tough for the Day Settings do not add up to 100")
   end
+
+  if SandboxVars.RandomZombiesFull.Fragile_Rain +
+    SandboxVars.RandomZombiesFull.Normal_Rain +
+    SandboxVars.RandomZombiesFull.Tough_Rain
+    ~= 100 then
+    error("[RZF] Fragile, Normal and Tough for the Rain Settings do not add up to 100")
+  end
 end
 
 utilities.LoadConfiguration = function()
   local configuration = {}
   configuration.updateFrequency = SandboxVars.RandomZombiesFull.Frequency
+  configuration.dayEnabled = SandboxVars.RandomZombiesFull.enable_Day
+  configuration.nightEnabled = SandboxVars.RandomZombiesFull.enable_Night
+  configuration.rainEnabled = SandboxVars.RandomZombiesFull.enable_Rain
   configuration.schedule = {
     summer = {
       startTime = SandboxVars.RandomZombiesFull.Summer_Night_Start,
@@ -103,6 +129,16 @@ utilities.LoadConfiguration = function()
     normal = SandboxVars.RandomZombiesFull.Normal_Night,
     tough = SandboxVars.RandomZombiesFull.Tough_Night,
     smart = SandboxVars.RandomZombiesFull.Smart_Night,
+  }
+  configuration.rainTime = {
+    crawler = SandboxVars.RandomZombiesFull.Crawler_Rain,
+    shambler = SandboxVars.RandomZombiesFull.Shambler_Rain,
+    fastShambler = SandboxVars.RandomZombiesFull.FastShambler_Rain,
+    sprinter = SandboxVars.RandomZombiesFull.Sprinter_Rain,
+    fragile = SandboxVars.RandomZombiesFull.Fragile_Rain,
+    normal = SandboxVars.RandomZombiesFull.Normal_Rain,
+    tough = SandboxVars.RandomZombiesFull.Tough_Rain,
+    smart = SandboxVars.RandomZombiesFull.Smart_Rain,
   }
 
   return configuration
