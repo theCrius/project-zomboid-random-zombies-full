@@ -38,8 +38,8 @@ SandboxVars = {
     [...],
     RandomZombiesFull = {
         Frequency = 7500,
-        Enable_Day = false,
-        Enable_Night = false,
+        Enable_Day = true,
+        Enable_Night = true,
         Enable_Rain = false,
         Summer_Night_Start = 23,
         Summer_Night_End = 6,

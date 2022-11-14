@@ -9,14 +9,14 @@ option RandomZombiesFull.Frequency
 
 option RandomZombiesFull.enable_Day
 {
-	type = boolean, default = false,
+	type = boolean, default = true,
 	page = RandomZombiesFull_main_page,
 	translation = RandomZombiesFull_enable_day,
 }
 
 option RandomZombiesFull.enable_Night
 {
-	type = boolean, default = false,
+	type = boolean, default = true,
 	page = RandomZombiesFull_main_page,
 	translation = RandomZombiesFull_enable_night,
 }
