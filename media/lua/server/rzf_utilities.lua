@@ -89,9 +89,11 @@ end
 utilities.LoadConfiguration = function()
   local configuration = {}
   configuration.updateFrequency = SandboxVars.RandomZombiesFull.Frequency
-  configuration.dayEnabled = SandboxVars.RandomZombiesFull.enable_Day
-  configuration.nightEnabled = SandboxVars.RandomZombiesFull.enable_Night
-  configuration.rainEnabled = SandboxVars.RandomZombiesFull.enable_Rain
+  configuration.toggles = {
+    dayTime = SandboxVars.RandomZombiesFull.enable_Day,
+    nightTime = SandboxVars.RandomZombiesFull.enable_Night,
+    rainTime = SandboxVars.RandomZombiesFull.enable_Rain
+  }
   configuration.schedule = {
     summer = {
       startTime = SandboxVars.RandomZombiesFull.Summer_Night_Start,
