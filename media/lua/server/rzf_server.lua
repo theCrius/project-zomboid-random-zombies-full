@@ -4,7 +4,7 @@ local utilities = require('rzf_utilities')
 
 -- Mod "global" configuration
 local configuration = {}
-local currentPreset = ''
+local currentPreset = 'unknown'
 
 -- Check the time and decide which preset to load for the zombies
 local function UpdatePreset()
