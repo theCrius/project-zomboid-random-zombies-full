@@ -7,25 +7,28 @@ option RandomZombiesFull.Frequency
 	translation = RandomZombiesFull_Frequency,
 }
 
-option RandomZombiesFull.enable_Day
+option RandomZombiesFull.Enable_Day
 {
-	type = boolean, default = true,
+	type = enum, numValues = 2, default = 2,
 	page = RandomZombiesFull_main_page,
 	translation = RandomZombiesFull_enable_day,
+	valueTranslation = RandomZombiesFull_enable_day_values,
 }
 
-option RandomZombiesFull.enable_Night
+option RandomZombiesFull.Enable_Night
 {
-	type = boolean, default = true,
+	type = enum, numValues = 2, default = 2,
 	page = RandomZombiesFull_main_page,
 	translation = RandomZombiesFull_enable_night,
+	valueTranslation = RandomZombiesFull_enable_night_values,
 }
 
-option RandomZombiesFull.enable_Rain
+option RandomZombiesFull.Enable_Special
 {
-	type = boolean, default = false,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_enable_rain,
+    type = enum, numValues = 4, default = 1,
+    page = RandomZombiesFull_main_page,
+    translation = RandomZombiesFull_enable_special,
+    valueTranslation = RandomZombiesFull_enable_special_values,
 }
 
 
@@ -204,58 +207,58 @@ option RandomZombiesFull.Smart_Night
 
 
 
-option RandomZombiesFull.Crawler_Rain
+option RandomZombiesFull.Crawler_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Crawler_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Crawler_Special,
 }
 
-option RandomZombiesFull.Shambler_Rain
+option RandomZombiesFull.Shambler_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Shambler_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Shambler_Special,
 }
 
-option RandomZombiesFull.FastShambler_Rain
+option RandomZombiesFull.FastShambler_Special
 {
 	type = double, min = 0, max = 100, default = 25,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_FastShambler_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_FastShambler_Special,
 }
 
-option RandomZombiesFull.Sprinter_Rain
+option RandomZombiesFull.Sprinter_Special
 {
 	type = double, min = 0, max = 100, default = 65,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Sprinter_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Sprinter_Special,
 }
 
-option RandomZombiesFull.Fragile_Rain
+option RandomZombiesFull.Fragile_Special
 {
 	type = double, min = 0, max = 100, default = 30,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Fragile_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Fragile_Special,
 }
 
-option RandomZombiesFull.Normal_Rain
+option RandomZombiesFull.Normal_Special
 {
 	type = double, min = 0, max = 100, default = 50,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Normal_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Normal_Special,
 }
 
-option RandomZombiesFull.Tough_Rain
+option RandomZombiesFull.Tough_Special
 {
 	type = double, min = 0, max = 100, default = 20,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Tough_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Tough_Special,
 }
 
-option RandomZombiesFull.Smart_Rain
+option RandomZombiesFull.Smart_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_rain_page,
-	translation = RandomZombiesFull_Smart_Rain,
+	page = RandomZombiesFull_special_page,
+	translation = RandomZombiesFull_Smart_Special,
 }

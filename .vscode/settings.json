@@ -16,6 +16,6 @@
         "getSandboxOptions",
         "ZombRand",
         "IsoZombie",
-        "RainManager"
+        "getClimateManager"
     ]
 }

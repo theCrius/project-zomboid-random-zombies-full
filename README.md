@@ -38,9 +38,9 @@ SandboxVars = {
     [...],
     RandomZombiesFull = {
         Frequency = 7500,
-        Enable_Day = true,
-        Enable_Night = true,
-        Enable_Rain = false,
+        Enable_Day = 2,
+        Enable_Night = 2,
+        Enable_Special = 1,
         Summer_Night_Start = 23,
         Summer_Night_End = 6,
         Autumn_Night_Start = 22,
@@ -65,14 +65,14 @@ SandboxVars = {
         Normal_Night = 50,
         Tough_Night = 20,
         Smart_Night = 5,
-        Crawler_Rain = 5,
-        Shambler_Rain = 5,
-        FastShambler_Rain = 25,
-        Sprinter_Rain = 65,
-        Fragile_Rain = 30,
-        Normal_Rain = 50,
-        Tough_Rain = 20,
-        Smart_Rain = 5
+        Crawler_Special = 5,
+        Shambler_Special = 5,
+        FastShambler_Special = 25,
+        Sprinter_Special = 65,
+        Fragile_Special = 30,
+        Normal_Special = 50,
+        Tough_Special = 20,
+        Smart_Special = 5
     },
     [...]
 }
@@ -82,5 +82,6 @@ SandboxVars = {
 
 - [Project Zomboid Tutorials](https://theindiestone.com/forums/index.php?/forum/53-tutorials-resources/)
 - [Project Zomboid Wiki - Modding](https://pzwiki.net/wiki/Modding)
+- [Project Zomboid Climate Manager APIs](https://zomboid-javadoc.com/41.65/zombie/iso/weather/ClimateManager.html)
 - Random Zombies by "belette" - used to understand how to properly distribute the ratio of zombies
 - Night Sprinters by "The Illuminati" - used to understand how to manage the time and switch between the different presets
