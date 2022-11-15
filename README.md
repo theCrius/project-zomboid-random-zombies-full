@@ -6,6 +6,10 @@ A mod for Project Zomboid that I started thinking "this will be easy" after forg
 
 Provide a way to randomize zombies' behaviour given some percentage set up by the user, supporting a night/day schedule and some weather patterns.
 
+## Where to download
+
+Steam workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2888099799
+
 ## Mod's Options
 
 - Start/End time for "night" in different seasons
