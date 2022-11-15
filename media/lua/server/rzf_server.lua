@@ -1,3 +1,4 @@
+local pluginsManager = require("rzf_pluginsManager")
 local presetManager = require('rzf_presetManager')
 local zombiesManager = require('rzf_zombiesManager')
 local utilities = require('rzf_utilities')
@@ -7,17 +8,22 @@ local configuration = {}
 local currentPreset = 'default'
 
 -- Check if presets are actually enabled, expect input as 'dayTime', 'nightTime' or 'specialTime'
-local function isPresetEnabled(preset)
-    if (preset ~= 'dayTime' and preset ~= 'nightTime' and preset ~= 'specialTime') then
-        error("preset not recognized, accepted values are 'dayTime', 'nightTime' or 'specialTime'.")
+local function isPresetEnabled(presetName)
+    local presetFound = false
+    local corePresets = presetManager.getAvailablePresets()
+    local pluginsPresets = pluginsManager.getAvailablePresets()
+    if (utilities.tableHasValue(corePresets, presetName)) then
+        -- all toggles have 1 as the "disabled" option
+        if configuration.toggles[presetName] ~= 1 then
+            presetFound = true
+        else
+            presetFound = false
+        end
+    elseif(utilities.tableHasValue(pluginsPresets, presetName)) then
+        presetFound = true
     end
 
-    -- all toggles have 1 as the "disabled" option
-    if configuration.toggles[preset] ~= 1 then
-        return true
-    else
-        return false
-    end
+    return presetFound
 end
 
 -- Check the time and decide which preset to load for the zombies
@@ -27,6 +33,11 @@ local function UpdatePreset()
     -- Check for special preset being enabled. This check is done earlier to preserve retrocompatibility prior to implementing Special presets
     if (isPresetEnabled('specialTime')) then
         detectedPreset = presetManager.OverrideWithSpecial(detectedTimePreset, configuration.toggles.specialTime, configuration.toggles.specialThreshold)
+    end
+    -- Check for plugins and load the activated ones
+    if (pluginsManager.arePluginsLoaded()) then
+        detectedPreset = pluginsManager.overrideWithPlugin(detectedPreset)
+        configuration[detectedPreset] = pluginsManager.getPresetDatabyName(detectedPreset)
     end
     print("[RZF] Schedule detected is ", detectedPreset)
     print("[RZF] Checking if preset ", detectedPreset, " is enabled")
