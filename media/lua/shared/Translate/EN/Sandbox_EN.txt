@@ -24,6 +24,13 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_enable_special_values_option3 = "Snow",
   Sandbox_RandomZombiesFull_enable_special_values_option4 = "Fog",
 
+  Sandbox_RandomZombiesFull_special_threshold = "Special Event Threshold",
+  Sandbox_RandomZombiesFull_special_threshold_tooltip = "If a Special preset is enabled, this allow you to decide on which intensity threshold the preset should be applied.",
+  Sandbox_RandomZombiesFull_special_threshold_values_option1 = "Any"
+  Sandbox_RandomZombiesFull_special_threshold_values_option2 = "Light (30% or more)",
+  Sandbox_RandomZombiesFull_special_threshold_values_option3 = "Average (50% or more)",
+  Sandbox_RandomZombiesFull_special_threshold_values_option4 = "Heavy (70% or more)",
+
 
   
   Sandbox_RandomZombiesFull_Summer_Night_Start = "Summer Night Start",

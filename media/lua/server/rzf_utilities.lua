@@ -92,7 +92,8 @@ utilities.LoadConfiguration = function()
   configuration.toggles = {
     dayTime = SandboxVars.RandomZombiesFull.Enable_Day,
     nightTime = SandboxVars.RandomZombiesFull.Enable_Night,
-    specialTime = SandboxVars.RandomZombiesFull.Enable_Special
+    specialTime = SandboxVars.RandomZombiesFull.Enable_Special,
+    specialThreshold = SandboxVars.RandomZombiesFull.Special_Threshold
   }
   configuration.schedule = {
     summer = {

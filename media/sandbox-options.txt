@@ -31,6 +31,14 @@ option RandomZombiesFull.Enable_Special
     valueTranslation = RandomZombiesFull_enable_special_values,
 }
 
+option RandomZombiesFull.Special_Threshold
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_main_page,
+    translation = RandomZombiesFull_special_threshold,
+    valueTranslation = RandomZombiesFull_special_threshold_values,
+}
+
 
 
 option RandomZombiesFull.Summer_Night_Start

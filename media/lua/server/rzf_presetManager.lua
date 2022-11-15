@@ -24,20 +24,29 @@ timeManager.GetEndTime = function(timeSchedule)
 	return timeSchedule.winter.endTime
 end
 
--- Expect the detectedTimePreset (day/night) and the value of the specialTime (2=Rain,3=Snow,4=Fog), returns the final preset to be activated
-timeManager.OverrideWithSpecial = function(detectedPreset, specialTrigger)
+-- Expect the detectedTimePreset (day/night), the value of the specialTime (2=Rain,3=Snow,4=Fog) and the threshold (1,2,3,4). Returns the final preset to be activated.
+timeManager.OverrideWithSpecial = function(detectedPreset, specialTrigger, selectedThreshold)
 	local specialHappening = false
 	local specialThreshold = 0.3
 	local specialIntensity = 0.0
 	local ClimateManager = getClimateManager()
 
-	-- TODO: Allow the user to determine on which intensity these conditions should trigger
-	if(specialTrigger == 2) then
+	if (selectedThreshold == 1) then
+		specialThreshold = 0.0
+	elseif (selectedThreshold == 2) then
+		specialThreshold = 0.3
+	elseif (selectedThreshold == 3) then
+		specialThreshold = 0.5
+	elseif (selectedThreshold == 4) then
+		specialThreshold = 0.7
+	end
+
+	if (specialTrigger == 2) then
 		specialIntensity = ClimateManager:getRainIntensity()
-		specialHappening = ClimateManager:isRaining()
-	elseif(specialTrigger == 3) then
+		specialHappening = ClimateManager:isRaining() and specialIntensity >= specialThreshold
+	elseif (specialTrigger == 3) then
 		specialIntensity = ClimateManager:getSnowIntensity()
-		specialHappening = ClimateManager:isSnowing()
+		specialHappening = ClimateManager:isSnowing() and specialIntensity >= specialThreshold
 	elseif (specialTrigger == 4) then
 		specialIntensity = ClimateManager:getFogIntensity()
 		specialHappening = specialIntensity >= specialThreshold
