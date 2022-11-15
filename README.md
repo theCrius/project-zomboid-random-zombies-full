@@ -41,6 +41,7 @@ SandboxVars = {
         Enable_Day = 2,
         Enable_Night = 2,
         Enable_Special = 1,
+        Special_Threshold = 2,
         Summer_Night_Start = 23,
         Summer_Night_End = 6,
         Autumn_Night_Start = 22,
