@@ -169,7 +169,7 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
       return
   end
-  print("[RZF] Updating zombies...")
+  -- print("[RZF] Updating zombies...")
   zombiesManager.tickCount = 1
 
   local now = getTimestampMs()
@@ -202,7 +202,7 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
           zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
       end
   end
-  print("[RZF] Zombies updated in active cells")
+  -- print("[RZF] Zombies updated in active cells")
 end
 
 zombiesManager.updateAllZombiesWithParams = function()

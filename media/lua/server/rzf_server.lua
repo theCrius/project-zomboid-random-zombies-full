@@ -33,6 +33,8 @@ local function UpdatePreset()
     -- Check for special preset being enabled. This check is done earlier to preserve retrocompatibility prior to implementing Special presets
     if (isPresetEnabled('specialTime')) then
         detectedPreset = presetManager.OverrideWithSpecial(detectedTimePreset, configuration.toggles.specialTime, configuration.toggles.specialThreshold)
+    else
+        detectedPreset = detectedTimePreset
     end
     -- Check for plugins and load the activated ones
     if (pluginsManager.arePluginsLoaded()) then
