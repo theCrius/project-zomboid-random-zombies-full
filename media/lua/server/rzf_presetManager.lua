@@ -68,6 +68,10 @@ timeManager.DetectTimePreset = function(schedule)
 	local startHour = timeManager.GetStartTime(schedule)
 	local endHour = timeManager.GetEndTime(schedule)
 
+	print("[RZF] Hour of Day: ", hourOfDay)
+	print("[RZF] Starting hour for nightTime: ", startHour)
+	print("[RZF] Ending hour for nightTime: ", endHour)
+
 	if (hourOfDay >= startHour and hourOfDay < endHour) then
 		detectedPreset = 'nightTime';
 	elseif (hourOfDay >= startHour or hourOfDay < endHour) and startHour > endHour then
