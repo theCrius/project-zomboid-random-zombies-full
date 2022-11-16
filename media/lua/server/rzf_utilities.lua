@@ -12,7 +12,22 @@ utilities.ValidateConfiguration = function()
     error("[RZF] No RandomZombiesFull table in config")
   end
 
-  if not (type(SandboxVars.RandomZombiesFull.Crawler_Day) == "number" and
+  if not (
+    type(SandboxVars.RandomZombiesFull.Summer_Night_Start) == "number" and
+    type(SandboxVars.RandomZombiesFull.Summer_Night_End) == "number" and
+    type(SandboxVars.RandomZombiesFull.Autumn_Night_Start) == "number" and
+    type(SandboxVars.RandomZombiesFull.Autumn_Night_End) == "number" and
+    type(SandboxVars.RandomZombiesFull.Winter_Night_Start) == "number" and
+    type(SandboxVars.RandomZombiesFull.Winter_Night_End) == "number" and
+    type(SandboxVars.RandomZombiesFull.Spring_Night_Start) == "number" and
+    type(SandboxVars.RandomZombiesFull.Spring_Night_End) == "number"
+  )
+  then
+    error("[RZF] Config value is not a number for the Season Night times")
+  end
+
+  if not (
+    type(SandboxVars.RandomZombiesFull.Crawler_Day) == "number" and
     type(SandboxVars.RandomZombiesFull.Shambler_Day) == "number" and
     type(SandboxVars.RandomZombiesFull.FastShambler_Day) == "number" and
     type(SandboxVars.RandomZombiesFull.Sprinter_Day) == "number" and
@@ -39,7 +54,7 @@ utilities.ValidateConfiguration = function()
   then
     error("[RZF] Config value is not a number for the Night Settings")
   end
-
+  
   if SandboxVars.RandomZombiesFull.Crawler_Night +
     SandboxVars.RandomZombiesFull.Shambler_Night +
     SandboxVars.RandomZombiesFull.FastShambler_Night +
