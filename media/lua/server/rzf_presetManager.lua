@@ -1,6 +1,6 @@
-local timeManager = {}
+local presetManager = {}
 
-timeManager.GetStartTime = function(timeSchedule)
+presetManager.GetStartTime = function(timeSchedule)
     local currentMonth = GameTime:getInstance():getMonth();
 	if currentMonth >= 2 and currentMonth <= 4 then
 		return timeSchedule.spring.startTime
@@ -12,7 +12,7 @@ timeManager.GetStartTime = function(timeSchedule)
 	return timeSchedule.winter.startTime
 end
 
-timeManager.GetEndTime = function(timeSchedule)
+presetManager.GetEndTime = function(timeSchedule)
     local currentMonth = GameTime:getInstance():getMonth();
 	if currentMonth >= 2 and currentMonth <= 4 then
 		return timeSchedule.spring.endTime
@@ -25,7 +25,7 @@ timeManager.GetEndTime = function(timeSchedule)
 end
 
 -- Expect the detectedTimePreset (day/night), the value of the specialTime (2=Rain,3=Snow,4=Fog) and the threshold (1,2,3,4). Returns the final preset to be activated.
-timeManager.OverrideWithSpecial = function(detectedPreset, specialTrigger, selectedThreshold)
+presetManager.OverrideWithSpecial = function(detectedPreset, specialTrigger, selectedThreshold)
 	local specialHappening = false
 	local specialThreshold = 0.3
 	local specialIntensity = 0.0
@@ -62,11 +62,15 @@ timeManager.OverrideWithSpecial = function(detectedPreset, specialTrigger, selec
 end
 
 -- Determine che right preset to use. Return 'nightTime' or 'dayTime'
-timeManager.DetectTimePreset = function(schedule)
+presetManager.DetectTimePreset = function(schedule)
 	local detectedPreset = nil
 	local hourOfDay = math.floor(getGameTime():getTimeOfDay());
-	local startHour = timeManager.GetStartTime(schedule)
-	local endHour = timeManager.GetEndTime(schedule)
+	local startHour = presetManager.GetStartTime(schedule)
+	local endHour = presetManager.GetEndTime(schedule)
+
+	-- print("[RZF] Hour of Day: ", hourOfDay)
+	-- print("[RZF] Starting hour for nightTime: ", startHour)
+	-- print("[RZF] Ending hour for nightTime: ", endHour)
 
 	if (hourOfDay >= startHour and hourOfDay < endHour) then
 		detectedPreset = 'nightTime';
@@ -79,4 +83,4 @@ timeManager.DetectTimePreset = function(schedule)
 	return detectedPreset
   end
 
-return timeManager
+return presetManager

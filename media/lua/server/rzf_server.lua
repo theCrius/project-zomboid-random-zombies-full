@@ -27,6 +27,8 @@ local function UpdatePreset()
     -- Check for special preset being enabled. This check is done earlier to preserve retrocompatibility prior to implementing Special presets
     if (isPresetEnabled('specialTime')) then
         detectedPreset = presetManager.OverrideWithSpecial(detectedTimePreset, configuration.toggles.specialTime, configuration.toggles.specialThreshold)
+    else
+        detectedPreset = detectedTimePreset
     end
     print("[RZF] Schedule detected is ", detectedPreset)
     print("[RZF] Checking if preset ", detectedPreset, " is enabled")
