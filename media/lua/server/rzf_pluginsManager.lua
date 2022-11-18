@@ -26,23 +26,29 @@ pluginsManager.getAvailablePresets = function()
     for i, pluginData in pairs(getEnabledPlugins()) do
         table.insert(pluginsPresetNames, pluginData.presetName)
     end
+    
+    return pluginsPresetNames
 end
 
 pluginsManager.overrideWithPlugin = function(detectedPreset)
-    local activatedPlugins = pluginsManager.getEnabledPlugins()
+    local activatedPlugins = getEnabledPlugins()
     for i, pluginData in pairs(activatedPlugins) do
+        print("[RZF] Checking plugin with preset ", pluginData.presetName)
         if(pluginData.triggerMode == nil) then
             if (pluginData.triggerFn()) then
+                print("[RZF] ", pluginData.presetName, " simple trigger has activated")
                 detectedPreset = pluginData.presetName
             end
         end
         if(pluginData.triggerMode == 'threshold') then
             if (pluginData.triggerFn(pluginData.threshold)) then
+                print("[RZF] ", pluginData.presetName, " threshold trigger has activated")
                 detectedPreset = pluginData.presetName
             end
         end
         if(pluginData.triggerMode == 'schedule') then
             if (pluginData.triggerFn(pluginData.schedule)) then
+                print("[RZF] ", pluginData.presetName, " schedule trigger has activated")
                 detectedPreset = pluginData.presetName
             end
         end
