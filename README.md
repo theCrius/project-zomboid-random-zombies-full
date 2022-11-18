@@ -27,6 +27,12 @@ Steam workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=288809979
 - Ability to specify different percentages for day and night
 - Ability to specify the interval at which these checks are run by the mod (increase/decrease CPU load)
 
+## Plugins
+
+With the recent changes anyone can write a plugin for this mod and it will be loaded as priority over the regular day/night/special cases.
+You can check a template for writing a plugin, at this [repository](https://github.com/theCrius/project-zomboid-random-zombies-full-plugin-template).
+If you have any issue with the plugins, please open them in that repository issue board instead of this one. Thanks!
+
 ## Mod's Logic
 
 - Read/Store options' values on Game/Server start
