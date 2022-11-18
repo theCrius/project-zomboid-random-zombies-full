@@ -6,6 +6,15 @@ RZF_PLUGINS = RZF_PLUGINS or {}
 
 local pluginsManager = {}
 
+local function getPlugins()
+    local totalPlugins = {}
+    for i, pluginData in pairs(RZF_PLUGINS) do
+        table.insert(totalPlugins, pluginData)
+    end
+
+    return totalPlugins
+end
+
 local function getEnabledPlugins()
     local activePlugins = {}
     for i, pluginData in pairs(RZF_PLUGINS) do
@@ -15,6 +24,15 @@ local function getEnabledPlugins()
     end
 
     return activePlugins
+end
+
+pluginsManager.getTotalPlugins = function(onlyActivated)
+    onlyActivated = onlyActivated or false
+    if (onlyActivated) then
+        return utilities.getTableLength(getEnabledPlugins())
+    else
+        return utilities.getTableLength(getPlugins())
+    end
 end
 
 pluginsManager.arePluginsLoaded = function() 
@@ -57,7 +75,7 @@ pluginsManager.overrideWithPlugin = function(detectedPreset)
 end
 
 pluginsManager.getPresetDatabyName = function(presetName)
-    local activatedPlugins = pluginsManager.getEnabledPlugins()
+    local activatedPlugins = getEnabledPlugins()
     for i, pluginData in pairs(activatedPlugins) do
         if (pluginData.presetName == presetName) then
             return pluginData.presetData
