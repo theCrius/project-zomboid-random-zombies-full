@@ -1,5 +1,4 @@
 local utilities = require('rzf_utilities')
-local presetManager = require('rzf_presetManager')
 
 -- Global table for plugins
 RZF_PLUGINS = RZF_PLUGINS or {}
