@@ -30,17 +30,20 @@ end
 local function UpdatePreset()
     local detectedPreset = 'default'
     local detectedTimePreset = presetManager.DetectTimePreset(configuration.schedule)
+    
     -- Check for special preset being enabled. This check is done earlier to preserve retrocompatibility prior to implementing Special presets
     if (isPresetEnabled('specialTime')) then
         detectedPreset = presetManager.OverrideWithSpecial(detectedTimePreset, configuration.toggles.specialTime, configuration.toggles.specialThreshold)
     else
         detectedPreset = detectedTimePreset
     end
+    
     -- Check for plugins and load the activated ones
     if (pluginsManager.arePluginsLoaded()) then
         detectedPreset = pluginsManager.overrideWithPlugin(detectedPreset)
         configuration[detectedPreset] = pluginsManager.getPresetDatabyName(detectedPreset)
     end
+    
     print("[RZF] Schedule detected is ", detectedPreset)
     print("[RZF] Checking if preset ", detectedPreset, " is enabled")
     if (isPresetEnabled(detectedPreset)) then
