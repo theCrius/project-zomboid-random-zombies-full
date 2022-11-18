@@ -40,6 +40,7 @@ local function UpdatePreset()
     
     -- Check for plugins and load the activated ones
     if (pluginsManager.arePluginsLoaded()) then
+        print("[RZF] Plugins detected - Checking conditions to override")
         detectedPreset = pluginsManager.overrideWithPlugin(detectedPreset)
         configuration[detectedPreset] = pluginsManager.getPresetDatabyName(detectedPreset)
     end
@@ -72,6 +73,9 @@ local function LoadConfiguration()
     if type(configuration) ~= 'table' then
         error("[RZF] Configuration is not a table of values")
     else
+        if (pluginsManager.getTotalPlugins()) then
+            print("[RZF] Plugins activated ", pluginsManager.getTotalPlugins(true), " of a total of ", pluginsManager.getTotalPlugins(), " detected.")
+        end
         UpdatePreset()
         Events.EveryHours.Add(UpdatePreset)
         -- Todo might be worth adding the check for special triggers on a separate event that check more often than once every hour?
