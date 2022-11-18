@@ -1,5 +1,9 @@
 local presetManager = {}
 
+presetManager.getAvailablePresets = function()
+	return {'dayTime', 'nightTime', 'specialTime'}
+end
+
 presetManager.GetStartTime = function(timeSchedule)
     local currentMonth = GameTime:getInstance():getMonth();
 	if currentMonth >= 2 and currentMonth <= 4 then

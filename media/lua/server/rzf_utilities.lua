@@ -208,4 +208,19 @@ utilities.zombieID = function(zombie)
   return utilities.hash(id)
 end
 
+utilities.getTableLength = function (table)
+  local length = 0
+  for _ in pairs(table) do length = length + 1 end
+  return length
+end
+
+utilities.tableHasValue = function (table, findValue)
+  for i, value in pairs(table) do
+    if(value == findValue) then
+        return true
+    end
+  end
+  return false
+end
+
 return utilities
