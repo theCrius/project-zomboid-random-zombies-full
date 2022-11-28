@@ -87,14 +87,14 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
     -- from _intended_ default state (i.e. RZ happened to assign it to default bucket) to _unintended_
     -- default state (i.e. RZ would not assign it to the default bucket, even though it's the same zombie)
     -- see IsoZombie::resetForReuse and VirtualZombieManager::createRealZombieAlways for more info
-    local shouldSkip = speedTypeVal == modData.BLTspeed and cognitionVal == modData.BLTcog and crawlingVal == modData.BLTcrawl and math.abs(squareXVal - modData.BLTx) <= 20 and math.abs(squareYVal - modData.BLTy) <= 20
+    local shouldSkip = speedTypeVal == modData.speed and cognitionVal == modData.cognition and crawlingVal == modData.crawling and math.abs(squareXVal - modData.x) <= 20 and math.abs(squareYVal - modData.y) <= 20
 
     -- NOTE (RandomZombie - Belette) we check for square to avoid crash in Java engine postupdate calls later
     if shouldSkip or (not square) then
       return true
     end
 
-    local zid = utilities.zombieID(zombie) 
+    local zid = utilities.zombieID(zombie)
     local slice = utilities.hashToSlice(zid)
 
     -- print("[RZF] Updating zombie with ID ", zid)
