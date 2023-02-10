@@ -1,0 +1,112 @@
+Sandbox_EN = {
+  Sandbox_RandomZombiesFull_main_page = "Random Zombies - Main",
+  Sandbox_RandomZombiesFull_day_page = "Random Zombies - Giorno",
+  Sandbox_RandomZombiesFull_night_page = "Random Zombies - Notte",
+  Sandbox_RandomZombiesFull_special_page = "Random Zombies - Speciale",
+
+  Sandbox_RandomZombiesFull_Frequency = "Frequenza di Update",
+  Sandbox_RandomZombiesFull_Frequency_tooltip = "Intervallo in millisecondi tra updates. Un numero piu' alto significa meno richieste alla CPU ma anche meno reattivita' del mod nel sovrascrivere gli attributi degli zombie.",
+
+  Sandbox_RandomZombiesFull_enable_day = "Attiva Distribuzione Giornaliera",
+  Sandbox_RandomZombiesFull_enable_day_tooltip = "Attiva per sovrascrivere il normale setting per gli zombie durante il giorno, seguendo la distribuzione giornaliera impostata.",
+  Sandbox_RandomZombiesFull_enable_day_values_option1 = "Disabilitata"
+  Sandbox_RandomZombiesFull_enable_day_values_option2 = "Abilitata",
+
+  Sandbox_RandomZombiesFull_enable_night = "Attiva Distribuzione Notturna",
+  Sandbox_RandomZombiesFull_enable_night_tooltip = "Attiva per sovrascrivere il normale setting per gli zombie durante la notte, seguendo la distribuzione notturna impostata.",
+  Sandbox_RandomZombiesFull_enable_night_values_option1 = "Disabilitata"
+  Sandbox_RandomZombiesFull_enable_night_values_option2 = "Abilitata",
+
+  Sandbox_RandomZombiesFull_enable_special = "Attiva Distribuzione Speciale",
+  Sandbox_RandomZombiesFull_enable_special_tooltip = "Attiva per sovrascrivere i setting per gli zombie durante la condizione speciale selezionate, seguendo la distribuzione speciale impostata. Ha precedenza sul giorno/notte.",
+  Sandbox_RandomZombiesFull_enable_special_values_option1 = "Disabilitata"
+  Sandbox_RandomZombiesFull_enable_special_values_option2 = "Pioggia",
+  Sandbox_RandomZombiesFull_enable_special_values_option3 = "Neve",
+  Sandbox_RandomZombiesFull_enable_special_values_option4 = "Nebbia",
+
+  Sandbox_RandomZombiesFull_special_threshold = "Limite Distribuzione Speciale",
+  Sandbox_RandomZombiesFull_special_threshold_tooltip = "Se la distribuzione speciale e' attivata, questa impostazione permette di scegliare a quale intensita' si attiva la distribuzione speciale.",
+  Sandbox_RandomZombiesFull_special_threshold_values_option1 = "Immediatamente"
+  Sandbox_RandomZombiesFull_special_threshold_values_option2 = "Leggera intensita' (30% o maggiore)",
+  Sandbox_RandomZombiesFull_special_threshold_values_option3 = "Media Intensita' (50% o maggiore)",
+  Sandbox_RandomZombiesFull_special_threshold_values_option4 = "Forte Intensita' (70% o maggiore)",
+
+
+  
+  Sandbox_RandomZombiesFull_Summer_Night_Start = "Estate - Inizio della Notte",
+  Sandbox_RandomZombiesFull_Summer_Night_Start_tooltip = "A che ora inizia la notte in estate. ",
+  Sandbox_RandomZombiesFull_Summer_Night_End = "Estate - Fine della Notte",
+  Sandbox_RandomZombiesFull_Summer_Night_End_tooltip = "A che ora finisce la notte in estate. ",
+
+  Sandbox_RandomZombiesFull_Autumn_Night_Start = "Autunno - Inizio della Notte",
+  Sandbox_RandomZombiesFull_Autumn_Night_Start_tooltip = "A che ora inizia la notte in autunno. ",
+  Sandbox_RandomZombiesFull_Autumn_Night_End = "Autunno - Fine della Notte",
+  Sandbox_RandomZombiesFull_Autumn_Night_End_tooltip = "A che ora finisce la notte in autunno. ",
+
+  Sandbox_RandomZombiesFull_Winter_Night_Start = "Inverno - Inizio della Notte",
+  Sandbox_RandomZombiesFull_Winter_Night_Start_tooltip = "A che ora inizia la notte in inverno. ",
+  Sandbox_RandomZombiesFull_Winter_Night_End = "Inverno - Fine della Notte",
+  Sandbox_RandomZombiesFull_Winter_Night_End_tooltip = "A che ora finisce la notte in inverno. ",
+
+  Sandbox_RandomZombiesFull_Spring_Night_Start = "Primavera - Inizio della Notte",
+  Sandbox_RandomZombiesFull_Spring_Night_Start_tooltip = "A che ora inizia la notte in primavera. ",
+  Sandbox_RandomZombiesFull_Spring_Night_End = "Primavera - Fine della Notte",
+  Sandbox_RandomZombiesFull_Spring_Night_End_tooltip = "A che ora finisce la notte in primavera. ",
+
+  Sandbox_RandomZombiesFull_Crawler_Day = "Perc. Striscianti",
+  Sandbox_RandomZombiesFull_Crawler_Day_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Shambler_Day = "Perc. Barcollanti",
+  Sandbox_RandomZombiesFull_Shambler_Day_tooltip = "Percentuale di barcollanti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_FastShambler_Day = "Perc. Barcollanti Veloci",
+  Sandbox_RandomZombiesFull_FastShambler_Day_tooltip = "Percentuale di barcollanti veloci presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Sprinter_Day = "Perc. Corridori",
+  Sandbox_RandomZombiesFull_Sprinter_Day_tooltip = "Percentuale di corridori presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Fragile_Day = "Perc. di Fragili",
+  Sandbox_RandomZombiesFull_Fragile_Day_tooltip = "Percentuale di fragili presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Normal_Day = "Perc. di Normali",
+  Sandbox_RandomZombiesFull_Normal_Day_tooltip = "Percentuale di normali presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Tough_Day = "Perc. di Duri",
+  Sandbox_RandomZombiesFull_Tough_Day_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Smart_Day = "Perc. di Intelligenti"
+  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+
+  Sandbox_RandomZombiesFull_Crawler_Night = "Perc. Striscianti",
+  Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Shambler_Night = "Perc. Barcollanti",
+  Sandbox_RandomZombiesFull_Shambler_Night_tooltip = "Percentuale di barcollanti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_FastShambler_Night = "Perc. Barcollanti Veloci",
+  Sandbox_RandomZombiesFull_FastShambler_Night_tooltip = "Percentuale di barcollanti veloci presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Sprinter_Night = "Perc. Corridori",
+  Sandbox_RandomZombiesFull_Sprinter_Night_tooltip = "Percentuale di corridori presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Fragile_Night = "Perc. di Fragili",
+  Sandbox_RandomZombiesFull_Fragile_Night_tooltip = "Percentuale di fragili presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Normal_Night = "Perc. di Normali",
+  Sandbox_RandomZombiesFull_Normal_Night_tooltip = "Percentuale di normali presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Tough_Night = "Perc. di Duri",
+  Sandbox_RandomZombiesFull_Tough_Night_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Smart_Night = "Perc. di Intelligenti"
+  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+
+  Sandbox_RandomZombiesFull_Crawler_Special = "Perc. Striscianti",
+  Sandbox_RandomZombiesFull_Crawler_Special_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Shambler_Special = "Perc. Barcollanti",
+  Sandbox_RandomZombiesFull_Shambler_Special_tooltip = "Percentuale di barcollanti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_FastShambler_Special = "Perc. Barcollanti Veloci",
+  Sandbox_RandomZombiesFull_FastShambler_Special_tooltip = "Percentuale di barcollanti veloci presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Sprinter_Special = "Perc. Corridori",
+  Sandbox_RandomZombiesFull_Sprinter_Special_tooltip = "Percentuale di corridori presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Fragile_Special = "Perc. di Fragili",
+  Sandbox_RandomZombiesFull_Fragile_Special_tooltip = "Percentuale di fragili presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Normal_Special = "Perc. di Normali",
+  Sandbox_RandomZombiesFull_Normal_Special_tooltip = "Percentuale di normali presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+  Sandbox_RandomZombiesFull_Tough_Special = "Perc. di Duri",
+  Sandbox_RandomZombiesFull_Tough_Special_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
+
+  Sandbox_RandomZombiesFull_Smart_Special = "Perc. di Intelligenti"
+  Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+}
