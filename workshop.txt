@@ -1,0 +1,87 @@
+version=1
+id=2888099799
+title=Random Zombies - Day and Night
+description=Add distribution of different type of zombies with two separate distribution sets, one for the day and one for the night. Also a special schedule is available in which you can choose how the zombies act when there is rain, snow or fog.
+description=Works on both single player and multiplayer.
+description=
+description=You can decide:
+description=
+description=[list]
+description=[*]When the night start and finish for each season
+description=[*]if you want zombies to behave differently in a specific weather (rain, snow, fog) and on which intensity (any, light, average, heavy) of the selected weather.
+description=[*]Specifically, if you want only some presets to be enabled (day, night, rain)
+description=[*]For each preset, which kind of zombies are more or less common between Crawlers, Shamblers, Fast Shamblers, Sprinters
+description=[*]For each preset, how many zombies are going to be flimsy, average or tough in terms of health
+description=[*]For each preset, if there is a percentage of  "enhanced" zombies that can open doors and have better hearing/sight
+description=[/list]
+description=
+description=[b]HOW IS THIS WORKING?[/b]
+description=
+description=The mod will check at the start of your single player session or server start and determine if it's "day", "night" or "special".
+description="Special" will always have priority over day/night if it's enabled. Then proceed to load the values you decided in the relative preset.
+description=
+description=The "Frequency Override" determine how often the zombies in the current active cells are being overridden with the values you selected in the mod. It's in milliseconds which means that the default 7500msc translate to 7.5 seconds.
+description=
+description=Until the override runs, the zombies in a cell will behave according to the vanilla setting, so if you left "proper zombies" for example, they will be Fast Shamblers.
+description=
+description=Every in game hour, the mod will check again the day/night/special event and update the preset. Be aware that the mod will not update the preset every hour in case the current preset is already the one that should be assigned.
+description=I considered updating more often to catch the special event as soon as it start but don't want to complicate the logic too much for now. Look at it as "the zombies need some time to get "influenced by the weather" and you have that time to prepare accordingly :)
+description=
+description=An example of the SandboxVars configuration block is available here: https://pastebin.com/raw/XUJ60mQj
+description=
+description=[b]PLUGIN SUPPORT[/b]
+description=
+description=This is still an experimental feature. Please be aware that some things may break or not work as expected.
+description=If you are interested in writing a plugin and something doesn't work as you would expect, contact me on the github [url=https://github.com/theCrius/project-zomboid-random-zombies-full-plugin-template/issues/new/choose]repository[/url] and open a support request.
+description=I can't guarantee quick responses but I'll try and give you an hand as much as I can.
+description=A template for writing a plugin can be found [url=https://github.com/theCrius/project-zomboid-random-zombies-full-plugin-template]here[/url] or you can download the template itself via workshop [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890233989]here[/url].
+description=The logic at the moment is that all plugins that are "active" are loaded and the precedence is set by the mod order (the lower in the list take precedence).
+description=Which means that if you have "plugin_always_sprinters" and "plugin_always_crawlers" the latter will be the one overriding every plugin that came before if they have the same triggers.
+description=
+description=[b]FAQ[/b]
+description=
+description=[b]- What I need to do to enable this mod?[/b]
+description=By default the day and night distribution is already enabled if you installed and activated the mod. Check that you activated it by opening your "mods" section in game after subscribing. For the details on the default distribution you can check the screenshots in this same page.
+description=
+description=
+description=[b]- How do I check if the mod is working?[/b]
+description=The mod works on both solo and multiplayer (hosted and dedicated servers). If you see something like [url=https://i.imgur.com/Ee4cpAw.png]this[/url] on your server/game logs, the mod has loaded and is working as it should. If there is some error happening, you should be able to see it in your server logs or in `C:\Users\[YOURUSERNAME]\Zomboid\Logs\[SOME_DATE_TIME]_DebugLog.txt` for game hosted locally, either single or multiplayer.
+description=
+description=[b]- Can I have the special preset trigger for more than one weather pattern?[/b]
+description=Unfortunately not. The reason is that I wanted to keep the mod's logic simple and already there are parts that are quite complex. Adding the possibility to have multiple weather detected or all of them would make for a much more complex logic to cover all possible combinations and not just in the code. Also the interface for the options would be quite hellish. This is the main reason I've added support for plugins. So that if you want a niche or specific combination, you can write your own logic and have it load up with higher priority over the regular presets and triggers. However, the plugin example [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890233989]here[/url] will do exactly that if you want to try.
+description=
+description=[b]- What are the percentages for the weather pattern intensity?[/b]
+description=When selecting the special schedule's trigger, you can select the intensity on which the preset actually get triggered. Intensity in the code goes from 0 to 1, using the decimals. The values used as thresholds are:
+description=-- Any means Intensity > 0.0
+description=-- Light means Intensity > 0.3
+description=-- Average means Intensity > 0.5
+description=-- Heavy means Intensity > 0.7
+description=
+description=[b]- What if I have multiple plugins with overlapping triggering conditions?[/b]
+description=Plugins will require this mod to work (duh!). What determine the priority in the plugins loaded, in case there are more than one, is the order in which they are loaded. A typical order with multiple plugins will be something like:
+description=-- [other mods]
+description=-- rzf_plugin_a
+description=-- rzf_plugin_b
+description=-- randomzombiesfull
+description=-- [other mods]
+description=Assuming plugin_a and plugin_b share the same trigger (let's say "rain and fog") the lower in the list will be the one that gets activated.
+description=
+description=[b]BUGS!?[/b]
+description=
+description=Please report bugs [url=https://github.com/theCrius/project-zomboid-random-zombies-full/issues/new/choose]here[/url], following the instructions provided.
+description=If you don't follow the instructions, I won't be checking on the bug report. I'm sorry to be this harsh but I need to have some clear indication of what/where to check for a bug as this is a free product that I made in my free time and it's a limited resource :)
+description=
+description=[b]SOURCE CODE[/b]
+description=I believe that open source helps immensely in improving a product, no matter the nature. Also, you could just subscribe the mod and get the source code anyway :D
+description=
+description=So here is the [url=https://github.com/theCrius/project-zomboid-random-zombies-full]official repository[/url] for it. Contribution and feature requests are welcome. The latter will always be considered as long as they fit the scope of the project. Cheers!
+description=
+description=[b]CREDITS[/b]
+description=
+description=This mod has been made as I needed (and loved) Random Zombies by "Belette" but also wanted a day/night variation as Night Sprinters by "The Illuminati" does. I used the chance to try my hand at modding Project Zomboid.
+description=
+description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2818577583]Random Zombies[/url]
+description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2683677702]Night Sprinters [41.60+][/url]
+description======================
+tags=Build 41;Balance;Misc;Multiplayer
+visibility=public
