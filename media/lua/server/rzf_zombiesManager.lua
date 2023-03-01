@@ -186,18 +186,21 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
 
   local zs = getCell():getZombieList()
   local sz = zs:size()
-
+  -- print("[RZF] Zombies in active cell(s): ", sz)
   local ZombieObj = IsoZombie.new(nil)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
-  local client = isClient()
+  local zombieUpdated = 0;
+  -- local client = isClient()
   for i = 0, sz - 1 do
       local z = zs:get(i)
-      if not (client and z:isRemoteZombie()) then
+      -- removing this condition to provide 100% accuracy with zombies in the cell and zombies updated
+      -- if not (client and z:isRemoteZombie()) then
           zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
-      end
+          zombieUpdated = zombieUpdated + 1
+      -- end
   end
-  -- print("[RZF] Zombies updated in active cells")
+  -- print("[RZF] Zombies updated: ", zombieUpdated)
 end
 
 zombiesManager.updateAllZombiesWithParams = function()
