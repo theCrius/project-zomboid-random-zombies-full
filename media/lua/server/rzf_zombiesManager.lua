@@ -106,8 +106,15 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
       end
-    else
+    elseif slice < distribution.sprinter then
         zombiesManager.updateSpeed(zombie, SPEED_SPRINTER, speedTypeVal)
+      if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
+        zombie:toggleCrawling()
+        zombie:setCanWalk(true);
+      end
+    -- DEFAULT to proper zombies in case something is missed
+    else
+      zombiesManager.updateSpeed(zombie, SPEED_FAST_SHAMBLER, speedTypeVal)
       if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
