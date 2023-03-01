@@ -50,7 +50,7 @@ local function UpdatePreset()
     if (isPresetEnabled(detectedPreset)) then
         if currentPreset ~= detectedPreset then
             print("[RZF] Schedule need to change from ", currentPreset, " to ", detectedPreset)
-            local zombieDistribution = zombiesManager.activatePreset(configuration[detectedPreset])
+            local zombieDistribution = presetManager.activatePreset(configuration[detectedPreset])
             zombiesManager.disable()
             zombiesManager.enable(zombieDistribution, configuration.updateFrequency)
             currentPreset = detectedPreset

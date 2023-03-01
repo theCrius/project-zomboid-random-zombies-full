@@ -19,23 +19,6 @@ zombiesManager.tickCount = 0
 zombiesManager.zombieDistribution = {}
 zombiesManager.updateFrequency = 1000
 
--- return the distribution based on the preset to be activated
-zombiesManager.activatePreset = function(requestedPreset)
-    local ZombieDistribution = {}
-    ZombieDistribution.crawler = math.floor(100 * requestedPreset.crawler)
-    ZombieDistribution.shambler = ZombieDistribution.crawler + math.floor(100 * requestedPreset.shambler)
-    ZombieDistribution.fastShambler = ZombieDistribution.shambler + math.floor(100 * requestedPreset.fastShambler)
-    ZombieDistribution.sprinter = ZombieDistribution.fastShambler + math.floor(100 * requestedPreset.sprinter)
-
-    ZombieDistribution.fragile = math.floor(100 * requestedPreset.fragile)
-    ZombieDistribution.normal = ZombieDistribution.fragile + math.floor(100 * requestedPreset.normal)
-    ZombieDistribution.tough = ZombieDistribution.normal + math.floor(100 * requestedPreset.tough)
-
-    ZombieDistribution.smart = math.floor(100 * requestedPreset.smart)
-
-    return ZombieDistribution
-end
-
 -- Check if zombie can actually stand up
 zombiesManager.shouldBeStanding = function(zombie)
     return not zombie:isKnockedDown()

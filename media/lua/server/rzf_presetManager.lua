@@ -85,6 +85,23 @@ presetManager.DetectTimePreset = function(schedule)
 	end
 
 	return detectedPreset
-  end
+end
+
+-- return a distribution based on the preset to be activated
+presetManager.activatePreset = function(requestedPreset)
+    local ZombieDistribution = {}
+    ZombieDistribution.crawler = math.floor(100 * requestedPreset.crawler)
+    ZombieDistribution.shambler = ZombieDistribution.crawler + math.floor(100 * requestedPreset.shambler)
+    ZombieDistribution.fastShambler = ZombieDistribution.shambler + math.floor(100 * requestedPreset.fastShambler)
+    ZombieDistribution.sprinter = ZombieDistribution.fastShambler + math.floor(100 * requestedPreset.sprinter)
+
+    ZombieDistribution.fragile = math.floor(100 * requestedPreset.fragile)
+    ZombieDistribution.normal = ZombieDistribution.fragile + math.floor(100 * requestedPreset.normal)
+    ZombieDistribution.tough = ZombieDistribution.normal + math.floor(100 * requestedPreset.tough)
+
+    ZombieDistribution.smart = math.floor(100 * requestedPreset.smart)
+
+    return ZombieDistribution
+end
 
 return presetManager
