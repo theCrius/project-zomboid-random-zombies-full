@@ -85,8 +85,6 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
     local zid = utilities.zombieID(zombie)
     local slice = utilities.hashToSlice(zid)
 
-    -- print("[RZF] Updating zombie with ID ", zid)
-
     -- update speed
     if slice < distribution.crawler then
       if not zombie:isCrawling() then
@@ -208,8 +206,8 @@ zombiesManager.updateAllZombiesWithParams = function()
 end
 
 -- enable the process of updating the zombies
-zombiesManager.enable = function(zombieDistribution, updateFrequency, utilitiesModule)
-  print ("[RZF] Override activated with update frequency of ", updateFrequency, " msec")
+zombiesManager.enable = function(zombieDistribution, updateFrequency)
+  -- print ("[RZF] Override activated with update frequency of ", updateFrequency, " msec")
   local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
   zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
   zombiesManager.zombieDistribution = zombieDistribution
