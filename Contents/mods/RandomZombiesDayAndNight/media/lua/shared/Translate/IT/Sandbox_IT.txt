@@ -70,7 +70,7 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Day_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
 
   Sandbox_RandomZombiesFull_Smart_Day = "Perc. di Intelligenti"
-  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
 
   Sandbox_RandomZombiesFull_Crawler_Night = "Perc. Striscianti",
   Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
@@ -89,7 +89,7 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Night_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
 
   Sandbox_RandomZombiesFull_Smart_Night = "Perc. di Intelligenti"
-  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
 
   Sandbox_RandomZombiesFull_Crawler_Special = "Perc. Striscianti",
   Sandbox_RandomZombiesFull_Crawler_Special_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
@@ -108,5 +108,5 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Special_tooltip = "Percentuale di duri presenti in una cella attiva della mappa. Le percentuali dei 3 tipi di resistenza sommate devono essere 100.",
 
   Sandbox_RandomZombiesFull_Smart_Special = "Perc. di Intelligenti"
-  Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentuale di intelligenti presenti in una cella attiva della mappa. Zombie evoluti sanno aprire porte, hanno un perfetto udito e una perfetta vista.",
+  Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
 }

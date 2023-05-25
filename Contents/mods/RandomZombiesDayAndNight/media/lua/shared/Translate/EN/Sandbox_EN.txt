@@ -70,7 +70,7 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Day_tooltip = "Percentage of Tough zombies present in the world during the day. Fragile, Normal and Tough must add up to 100.",
 
   Sandbox_RandomZombiesFull_Smart_Day = "Day Smart Percent"
-  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentage of Smart zombies present in the world during the day. These zombies can open doors and have hightened senses.",
+  Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentage of Smart zombies present in the world during the day. These zombies can open doors.",
 
   Sandbox_RandomZombiesFull_Crawler_Night = "Night Crawlers Percent",
   Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentage of Crawlers present in the world during the night. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
@@ -89,7 +89,7 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Night_tooltip = "Percentage of Tough zombies present in the world during the night. Fragile, Normal and Tough must add up to 100.",
 
   Sandbox_RandomZombiesFull_Smart_Night = "Night Smart Percent"
-  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentage of Smart zombies present in the world during the night. These zombies can open doors and have hightened senses.",
+  Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentage of Smart zombies present in the world during the night. These zombies can open doors.",
 
   Sandbox_RandomZombiesFull_Crawler_Special = "Special Crawlers Percent",
   Sandbox_RandomZombiesFull_Crawler_Special_tooltip = "Percentage of Crawlers present in the world during the special event. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
@@ -108,5 +108,5 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Tough_Special_tooltip = "Percentage of Tough zombies present in the world during the special event. Fragile, Normal and Tough must add up to 100.",
 
   Sandbox_RandomZombiesFull_Smart_Special = "Special Smart Percent"
-  Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentage of Smart zombies present in the world during the special event. These zombies can open doors and have hightened senses.",
+  Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentage of Smart zombies present in the world during the special event. These zombies can open doors.",
 }
