@@ -81,14 +81,23 @@ zombiesManager.updateCognition = function(zombie, targetCognition, actualCogniti
 end
 
 -- Update a single zombie according to parameters passed
-zombiesManager.updateZombie = function(zombie, distribution, speedType, cognition)
+zombiesManager.updateZombie = function(zombie, distribution, speedType, cognition, memory, sight, hearing)
     local modData = zombie:getModData()
     local speedTypeVal = getClassFieldVal(zombie, speedType)
     local cognitionVal = getClassFieldVal(zombie, cognition)
+    local memoryVal = getClassFieldVal(zombie, memory)
+    local sightVal = getClassFieldVal(zombie, sight)
+    local hearingVal = getClassFieldVal(zombie, hearing)
     local crawlingVal = zombie:isCrawling()
     local square = zombie:getCurrentSquare()
     local squareXVal = square and square:getX() or 0
     local squareYVal = square and square:getY() or 0
+
+    print("[RZF] ===================")
+    print("[RZF] memory", MEMORY_DEFAULT, memoryVal)
+    print("[RZF] sight", SIGHT_DEFAULT, sightVal)
+    print("[RZF] hearing", HEARING_DEFAULT, hearingVal)
+    print("[RZF] ===================")
 
     -- NOTE (RandomZombie - Belette) we have to include X and Y in the check to catch zombies that have been recycled
     -- from _intended_ default state (i.e. RZ happened to assign it to default bucket) to _unintended_
@@ -212,12 +221,15 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   local ZombieObj = IsoZombie.new(nil)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
+  local memory = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.memory")
+  local sight = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.sight")
+  local hearing = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.hearing")
   local zombieUpdated = 0;
   for i = 0, sz - 1 do
       local z = zs:get(i)
       -- removing this condition to provide 100% accuracy with zombies in the cell and zombies updated
       -- if not (client and z:isRemoteZombie()) then
-          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
+          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition, memory, sight, hearing)
           zombieUpdated = zombieUpdated + 1
       -- end
   end
