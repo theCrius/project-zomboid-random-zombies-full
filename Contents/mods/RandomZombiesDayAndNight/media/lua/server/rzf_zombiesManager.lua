@@ -39,8 +39,6 @@ zombiesManager.initZombieLoreDefaults = function()
   MEMORY_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Memory')
   SIGHT_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Sight')
   HEARING_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Hearing')
-  print("[RZF] DEFAULT SANDBOX VALUES LOADED")
-  print('speed', SPEED_DEFAULT, 'cognition', COGNITION_DEFAULT, 'memory', MEMORY_DEFAULT, 'sight', SIGHT_DEFAULT, 'hearing', HEARING_DEFAULT)
 end
 
 -- Check if zombie can actually stand up
