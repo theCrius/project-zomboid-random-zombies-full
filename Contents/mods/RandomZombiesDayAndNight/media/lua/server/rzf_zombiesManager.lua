@@ -2,12 +2,18 @@ local utilities = require("rzf_utilities")
 local zombiesManager = {}
 
 -- Default Values from Core
+local SPEED_DEFAULT         = utilities.getSandboxVarValue('ZombieLore.Speed')
 local SPEED_SPRINTER        = 1
 local SPEED_FAST_SHAMBLER   = 2
 local SPEED_SHAMBLER        = 3
+
+local COGNITION_DEFAULT     = utilities.getSandboxVarValue('ZombieLore.Cognition')
 local COGNITION_SMART       = 1
-local COGNITION_DEFAULT     = 3
-local COGNITION_RANDOM      = 4
+local MEMORY_DEFAULT        = utilities.getSandboxVarValue('ZombieLore.Memory')
+local MEMORY_SMART          = 4
+
+local SIGHT_DEFAULT         = utilities.getSandboxVarValue('ZombieLore.Sight')
+local HEARING_DEFAULT       = utilities.getSandboxVarValue('ZombieLore.Hearing')
 
 -- Shared variables for the module
 zombiesManager.tickFrequency = 10
