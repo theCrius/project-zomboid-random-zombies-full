@@ -179,6 +179,36 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
       end
     end
 
+    -- update memory
+    if zombiesManager.toggles.overrideMemory == 2 then
+      if not zombie:getAttackedBy() then
+        utilities.setSandboxVarValue('ZombieLore.Memory', distribution.memory)
+        zombie:DoZombieStats()
+        utilities.setSandboxVarValue('ZombieLore.Memory', memoryVal)
+        print("[RZF] Updated Memory for Zombie", zid)
+      end
+    end
+
+    -- update sight
+    if zombiesManager.toggles.overrideSight == 2 then
+      if not zombie:getAttackedBy() then
+        utilities.setSandboxVarValue('ZombieLore.Sight', distribution.sight)
+        zombie:DoZombieStats()
+        utilities.setSandboxVarValue('ZombieLore.Sight', sightVal)
+        print("[RZF] Updated Sight for Zombie", zid)
+      end
+    end
+
+    -- update hearing
+    if zombiesManager.toggles.overrideHearing == 2 then
+      if not zombie:getAttackedBy() then
+        utilities.setSandboxVarValue('ZombieLore.Hearing', distribution.hearing)
+        zombie:DoZombieStats()
+        utilities.setSandboxVarValue('ZombieLore.Hearing', hearingVal)
+        print("[RZF] Updated Hearing for Zombie", zid)
+      end
+    end
+
     -- update smart zombies
     if distribution.smart > 0 then
       zid = utilities.hash(zid)
@@ -194,6 +224,9 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
 
     modData.speed = getClassFieldVal(zombie, speedType)
     modData.cognition = getClassFieldVal(zombie, cognition)
+    modData.memory = getClassFieldVal(zombie, memory)
+    modData.sight = getClassFieldVal(zombie, sight)
+    modData.hearing = getClassFieldVal(zombie, hearing)
     modData.crawling = zombie:isCrawling()
     modData.x = squareXVal
     modData.y = squareYVal
@@ -253,12 +286,13 @@ zombiesManager.updateAllZombiesWithParams = function()
 end
 
 -- enable the process of updating the zombies
-zombiesManager.enable = function(zombieDistribution, updateFrequency)
+zombiesManager.enable = function(zombieDistribution, updateFrequency, toggles)
   -- print ("[RZF] Override activated with update frequency of ", updateFrequency, " msec")
   local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
   zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
   zombiesManager.zombieDistribution = zombieDistribution
   zombiesManager.updateFrequency = updateFrequency
+  zombiesManager.toggles = toggles
   Events.OnTick.Add(zombiesManager.updateAllZombiesWithParams)
 end
 
