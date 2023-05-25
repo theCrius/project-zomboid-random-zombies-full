@@ -3,64 +3,64 @@ VERSION = 1,
 option RandomZombiesFull.Frequency
 {
 	type = integer, min = 1000, max = 60000, default = 7500,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Frequency,
 }
 
 option RandomZombiesFull.Enable_Day
 {
 	type = enum, numValues = 2, default = 2,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_enable_day,
-	valueTranslation = RandomZombiesFull_enable_day_values,
+	page = RandomZombiesFull_Main_Page,
+	translation = RandomZombiesFull_Enable_Day,
+	valueTranslation = RandomZombiesFull_Enable_Day_values,
 }
 
 option RandomZombiesFull.Enable_Night
 {
 	type = enum, numValues = 2, default = 2,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_enable_night,
-	valueTranslation = RandomZombiesFull_enable_night_values,
+	page = RandomZombiesFull_Main_Page,
+	translation = RandomZombiesFull_Enable_Night,
+	valueTranslation = RandomZombiesFull_Enable_Night_values,
 }
 
 option RandomZombiesFull.Enable_Special
 {
     type = enum, numValues = 4, default = 1,
-    page = RandomZombiesFull_main_page,
-    translation = RandomZombiesFull_enable_special,
-    valueTranslation = RandomZombiesFull_enable_special_values,
+    page = RandomZombiesFull_Main_Page,
+    translation = RandomZombiesFull_Enable_Special,
+    valueTranslation = RandomZombiesFull_Enable_Special_values,
 }
 
 option RandomZombiesFull.Special_Threshold
 {
     type = enum, numValues = 4, default = 2,
-    page = RandomZombiesFull_main_page,
-    translation = RandomZombiesFull_special_threshold,
-    valueTranslation = RandomZombiesFull_special_threshold_values,
+    page = RandomZombiesFull_Main_Page,
+    translation = RandomZombiesFull_Special_Threshold,
+    valueTranslation = RandomZombiesFull_Special_Threshold_values,
 }
 
 option RandomZombiesFull.Override_Memory
 {
 	type = enum, numValues = 2, default = 1,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_override_memory,
-	valueTranslation = RandomZombiesFull_override_memory_values,
+	page = RandomZombiesFull_Main_Page,
+	translation = RandomZombiesFull_Override_Memory,
+	valueTranslation = RandomZombiesFull_Override_Memory_values,
 }
 
 option RandomZombiesFull.Override_Sight
 {
 	type = enum, numValues = 2, default = 1,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_override_sight,
-	valueTranslation = RandomZombiesFull_override_sight_values,
+	page = RandomZombiesFull_Main_Page,
+	translation = RandomZombiesFull_Override_Sight,
+	valueTranslation = RandomZombiesFull_Override_Sight_values,
 }
 
 option RandomZombiesFull.Override_Hearing
 {
 	type = enum, numValues = 2, default = 1,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_override_hearing,
-	valueTranslation = RandomZombiesFull_override_hearing_values,
+	page = RandomZombiesFull_Main_Page,
+	translation = RandomZombiesFull_Override_Hearing,
+	valueTranslation = RandomZombiesFull_Override_Hearing_values,
 }
 
 
@@ -68,56 +68,56 @@ option RandomZombiesFull.Override_Hearing
 option RandomZombiesFull.Summer_Night_Start
 {
 	type = integer, min = 0, max = 23, default = 23,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Summer_Night_Start,
 }
 
 option RandomZombiesFull.Summer_Night_End
 {
 	type = integer, min = 0, max = 23, default = 6,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Summer_Night_End,
 }
 
 option RandomZombiesFull.Autumn_Night_Start
 {
 	type = integer, min = 0, max = 23, default = 22,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Autumn_Night_Start,
 }
 
 option RandomZombiesFull.Autumn_Night_End
 {
 	type = integer, min = 0, max = 23, default = 6,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Autumn_Night_End,
 }
 
 option RandomZombiesFull.Winter_Night_Start
 {
 	type = integer, min = 0, max = 23, default = 20,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Winter_Night_Start,
 }
 
 option RandomZombiesFull.Winter_Night_End
 {
 	type = integer, min = 0, max = 23, default = 6,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Winter_Night_End,
 }
 
 option RandomZombiesFull.Spring_Night_Start
 {
 	type = integer, min = 0, max = 23, default = 22,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Spring_Night_Start,
 }
 
 option RandomZombiesFull.Spring_Night_End
 {
 	type = integer, min = 0, max = 23, default = 6,
-	page = RandomZombiesFull_main_page,
+	page = RandomZombiesFull_Main_Page,
 	translation = RandomZombiesFull_Spring_Night_End,
 }
 
@@ -126,56 +126,56 @@ option RandomZombiesFull.Spring_Night_End
 option RandomZombiesFull.Crawler_Day
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Crawler_Day,
 }
 
 option RandomZombiesFull.Shambler_Day
 {
 	type = double, min = 0, max = 100, default = 65,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Shambler_Day,
 }
 
 option RandomZombiesFull.FastShambler_Day
 {
 	type = double, min = 0, max = 100, default = 25,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_FastShambler_Day,
 }
 
 option RandomZombiesFull.Sprinter_Day
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Sprinter_Day,
 }
 
 option RandomZombiesFull.Fragile_Day
 {
 	type = double, min = 0, max = 100, default = 30,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Fragile_Day,
 }
 
 option RandomZombiesFull.Normal_Day
 {
 	type = double, min = 0, max = 100, default = 50,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Normal_Day,
 }
 
 option RandomZombiesFull.Tough_Day
 {
 	type = double, min = 0, max = 100, default = 20,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Tough_Day,
 }
 
 option RandomZombiesFull.Smart_Day
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_day_page,
+	page = RandomZombiesFull_Day_Page,
 	translation = RandomZombiesFull_Smart_Day,
 }
 
@@ -184,56 +184,56 @@ option RandomZombiesFull.Smart_Day
 option RandomZombiesFull.Crawler_Night
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Crawler_Night,
 }
 
 option RandomZombiesFull.Shambler_Night
 {
 	type = double, min = 0, max = 100, default = 25,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Shambler_Night,
 }
 
 option RandomZombiesFull.FastShambler_Night
 {
 	type = double, min = 0, max = 100, default = 65,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_FastShambler_Night,
 }
 
 option RandomZombiesFull.Sprinter_Night
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Sprinter_Night,
 }
 
 option RandomZombiesFull.Fragile_Night
 {
 	type = double, min = 0, max = 100, default = 30,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Fragile_Night,
 }
 
 option RandomZombiesFull.Normal_Night
 {
 	type = double, min = 0, max = 100, default = 50,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Normal_Night,
 }
 
 option RandomZombiesFull.Tough_Night
 {
 	type = double, min = 0, max = 100, default = 20,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Tough_Night,
 }
 
 option RandomZombiesFull.Smart_Night
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_night_page,
+	page = RandomZombiesFull_Night_Page,
 	translation = RandomZombiesFull_Smart_Night,
 }
 
@@ -242,55 +242,55 @@ option RandomZombiesFull.Smart_Night
 option RandomZombiesFull.Crawler_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Crawler_Special,
 }
 
 option RandomZombiesFull.Shambler_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Shambler_Special,
 }
 
 option RandomZombiesFull.FastShambler_Special
 {
 	type = double, min = 0, max = 100, default = 25,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_FastShambler_Special,
 }
 
 option RandomZombiesFull.Sprinter_Special
 {
 	type = double, min = 0, max = 100, default = 65,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Sprinter_Special,
 }
 
 option RandomZombiesFull.Fragile_Special
 {
 	type = double, min = 0, max = 100, default = 30,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Fragile_Special,
 }
 
 option RandomZombiesFull.Normal_Special
 {
 	type = double, min = 0, max = 100, default = 50,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Normal_Special,
 }
 
 option RandomZombiesFull.Tough_Special
 {
 	type = double, min = 0, max = 100, default = 20,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Tough_Special,
 }
 
 option RandomZombiesFull.Smart_Special
 {
 	type = double, min = 0, max = 100, default = 5,
-	page = RandomZombiesFull_special_page,
+	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Smart_Special,
 }
