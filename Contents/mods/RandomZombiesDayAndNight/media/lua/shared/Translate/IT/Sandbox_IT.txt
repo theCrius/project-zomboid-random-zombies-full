@@ -87,6 +87,28 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Smart_Day = "Perc. di Intelligenti"
   Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
 
+  Sandbox_RandomZombiesFull_Memory_Day = "Memoria",
+  Sandbox_RandomZombiesFull_Memory_Day_tooltip = "Determina quanto a lungo gli zombie continuano a cercare dopo aver avvistato un giocatore.",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option1 = "Lunga"
+  Sandbox_RandomZombiesFull_Memory_Day_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option3 = "Breve",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option4 = "Nessuna",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option5 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Sight_Day = "Vista",
+  Sandbox_RandomZombiesFull_Sight_Day_tooltip = "Determina quanto buona e' la vista degli zombie.",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option1 = "Buona"
+  Sandbox_RandomZombiesFull_Sight_Day_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option4 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Hearing_Day = "Udito",
+  Sandbox_RandomZombiesFull_Hearing_Day_tooltip = "Determina quanto buono e' l'udito degli zombie.",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option1 = "Buono"
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option4 = "Casuale",
+
   Sandbox_RandomZombiesFull_Crawler_Night = "Perc. Striscianti",
   Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
   Sandbox_RandomZombiesFull_Shambler_Night = "Perc. Barcollanti",
@@ -106,6 +128,28 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Smart_Night = "Perc. di Intelligenti"
   Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
 
+  Sandbox_RandomZombiesFull_Memory_Night = "Memoria",
+  Sandbox_RandomZombiesFull_Memory_Night_tooltip = "Determina quanto a lungo gli zombie continuano a cercare dopo aver avvistato un giocatore.",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option1 = "Lunga"
+  Sandbox_RandomZombiesFull_Memory_Night_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option3 = "Breve",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option4 = "Nessuna",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option5 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Sight_Night = "Vista",
+  Sandbox_RandomZombiesFull_Sight_Night_tooltip = "Determina quanto buona e' la vista degli zombie.",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option1 = "Buona"
+  Sandbox_RandomZombiesFull_Sight_Night_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option4 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Hearing_Night = "Udito",
+  Sandbox_RandomZombiesFull_Hearing_Night_tooltip = "Determina quanto buono e' l'udito degli zombie.",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option1 = "Buono"
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option4 = "Casuale",
+
   Sandbox_RandomZombiesFull_Crawler_Special = "Perc. Striscianti",
   Sandbox_RandomZombiesFull_Crawler_Special_tooltip = "Percentuale di striscianti presenti in una cella attiva della mappa. Le percentuali dei 4 tipi di velocita' sommate devono essere 100.",
   Sandbox_RandomZombiesFull_Shambler_Special = "Perc. Barcollanti",
@@ -124,4 +168,26 @@ Sandbox_EN = {
 
   Sandbox_RandomZombiesFull_Smart_Special = "Perc. di Intelligenti"
   Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentuale di zombie intelligenti presenti in una cella attiva della mappa. Questi zombie sanno aprire porte.",
+
+  Sandbox_RandomZombiesFull_Memory_Special = "Memoria",
+  Sandbox_RandomZombiesFull_Memory_Special_tooltip = "Determina quanto a lungo gli zombie continuano a cercare dopo aver avvistato un giocatore.",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option1 = "Lunga"
+  Sandbox_RandomZombiesFull_Memory_Special_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option3 = "Breve",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option4 = "Nessuna",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option5 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Sight_Special = "Vista",
+  Sandbox_RandomZombiesFull_Sight_Special_tooltip = "Determina quanto buona e' la vista degli zombie.",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option1 = "Buona"
+  Sandbox_RandomZombiesFull_Sight_Special_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option4 = "Casuale",
+
+  Sandbox_RandomZombiesFull_Hearing_Special = "Udito",
+  Sandbox_RandomZombiesFull_Hearing_Special_tooltip = "Determina quanto buono e' l'udito degli zombie.",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option1 = "Buono"
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option2 = "Normale",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option3 = "Debole",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option4 = "Casuale",
 }

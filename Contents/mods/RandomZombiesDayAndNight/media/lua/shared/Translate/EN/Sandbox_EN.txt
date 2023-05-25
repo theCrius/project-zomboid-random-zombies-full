@@ -85,6 +85,28 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Smart_Day = "Day Smart Percent"
   Sandbox_RandomZombiesFull_Smart_Day_tooltip = "Percentage of Smart zombies present in the world during the day. These zombies can open doors.",
 
+  Sandbox_RandomZombiesFull_Memory_Day = "Memory",
+  Sandbox_RandomZombiesFull_Memory_Day_tooltip = "Determine how long the zombies will remember your presence in the area and look for you after being detected.",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option1 = "Long"
+  Sandbox_RandomZombiesFull_Memory_Day_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option3 = "Short",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option4 = "None",
+  Sandbox_RandomZombiesFull_Memory_Day_values_option5 = "Random",
+
+  Sandbox_RandomZombiesFull_Sight_Day = "Sight",
+  Sandbox_RandomZombiesFull_Sight_Day_tooltip = "Determine how good the zombies eyesight will be.",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Sight_Day_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Sight_Day_values_option4 = "Random",
+
+  Sandbox_RandomZombiesFull_Hearing_Day = "Hearing",
+  Sandbox_RandomZombiesFull_Hearing_Day_tooltip = "Determine how good the zombies hearing will be.",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Hearing_Day_values_option4 = "Random",
+
   Sandbox_RandomZombiesFull_Crawler_Night = "Night Crawlers Percent",
   Sandbox_RandomZombiesFull_Crawler_Night_tooltip = "Percentage of Crawlers present in the world during the night. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
   Sandbox_RandomZombiesFull_Shambler_Night = "Night Shamblers Percent",
@@ -104,6 +126,28 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Smart_Night = "Night Smart Percent"
   Sandbox_RandomZombiesFull_Smart_Night_tooltip = "Percentage of Smart zombies present in the world during the night. These zombies can open doors.",
 
+  Sandbox_RandomZombiesFull_Memory_Night = "Memory",
+  Sandbox_RandomZombiesFull_Memory_Night_tooltip = "How long the zombies will remember your presence in the area and look for you after being detected.",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option1 = "Long"
+  Sandbox_RandomZombiesFull_Memory_Night_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option3 = "Short",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option4 = "None",
+  Sandbox_RandomZombiesFull_Memory_Night_values_option5 = "Random",
+
+  Sandbox_RandomZombiesFull_Sight_Night = "Sight",
+  Sandbox_RandomZombiesFull_Sight_Night_tooltip = "How good the zombies eyesight will be.",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Sight_Night_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Sight_Night_values_option4 = "Random",
+
+  Sandbox_RandomZombiesFull_Hearing_Night = "Hearing",
+  Sandbox_RandomZombiesFull_Hearing_Night_tooltip = "How good the zombies hearing will be.",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Hearing_Night_values_option4 = "Random",
+
   Sandbox_RandomZombiesFull_Crawler_Special = "Special Crawlers Percent",
   Sandbox_RandomZombiesFull_Crawler_Special_tooltip = "Percentage of Crawlers present in the world during the special event. Crawler, Shambler, FastShambler and Sprinter must add up to 100.",
   Sandbox_RandomZombiesFull_Shambler_Special = "Special Shamblers Percent",
@@ -122,4 +166,26 @@ Sandbox_EN = {
 
   Sandbox_RandomZombiesFull_Smart_Special = "Special Smart Percent"
   Sandbox_RandomZombiesFull_Smart_Special_tooltip = "Percentage of Smart zombies present in the world during the special event. These zombies can open doors.",
+
+  Sandbox_RandomZombiesFull_Memory_Special = "Memory",
+  Sandbox_RandomZombiesFull_Memory_Special_tooltip = "How long the zombies will remember your presence in the area and look for you after being detected.",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option1 = "Long"
+  Sandbox_RandomZombiesFull_Memory_Special_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option3 = "Short",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option4 = "None",
+  Sandbox_RandomZombiesFull_Memory_Special_values_option5 = "Random",
+
+  Sandbox_RandomZombiesFull_Sight_Special = "Sight",
+  Sandbox_RandomZombiesFull_Sight_Special_tooltip = "How good the zombies eyesight will be.",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Sight_Special_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Sight_Special_values_option4 = "Random",
+
+  Sandbox_RandomZombiesFull_Hearing_Special = "Hearing",
+  Sandbox_RandomZombiesFull_Hearing_Special_tooltip = "How good the zombies hearing will be.",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option1 = "Good"
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option2 = "Normal",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option3 = "Poor",
+  Sandbox_RandomZombiesFull_Hearing_Special_values_option4 = "Random",
 }

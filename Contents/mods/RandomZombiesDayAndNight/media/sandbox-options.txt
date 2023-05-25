@@ -179,6 +179,30 @@ option RandomZombiesFull.Smart_Day
 	translation = RandomZombiesFull_Smart_Day,
 }
 
+option RandomZombiesFull.Memory_Day
+{
+    type = enum, numValues = 5, default = 2,
+    page = RandomZombiesFull_Day_Page,
+    translation = RandomZombiesFull_Memory_Day,
+    valueTranslation = RandomZombiesFull_Memory_Day_values,
+}
+
+option RandomZombiesFull.Sight_Day
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Day_Page,
+    translation = RandomZombiesFull_Sight_Day,
+    valueTranslation = RandomZombiesFull_Sight_Day_values,
+}
+
+option RandomZombiesFull.Hearing_Day
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Day_Page,
+    translation = RandomZombiesFull_Hearing_Day,
+    valueTranslation = RandomZombiesFull_Hearing_Day_values,
+}
+
 
 
 option RandomZombiesFull.Crawler_Night
@@ -237,6 +261,29 @@ option RandomZombiesFull.Smart_Night
 	translation = RandomZombiesFull_Smart_Night,
 }
 
+option RandomZombiesFull.Memory_Night
+{
+    type = enum, numValues = 5, default = 2,
+    page = RandomZombiesFull_Night_Page,
+    translation = RandomZombiesFull_Memory_Night,
+    valueTranslation = RandomZombiesFull_Memory_Night_values,
+}
+
+option RandomZombiesFull.Sight_Night
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Night_Page,
+    translation = RandomZombiesFull_Sight_Night,
+    valueTranslation = RandomZombiesFull_Sight_Night_values,
+}
+
+option RandomZombiesFull.Hearing_Night
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Night_Page,
+    translation = RandomZombiesFull_Hearing_Night,
+    valueTranslation = RandomZombiesFull_Hearing_Night_values,
+}
 
 
 option RandomZombiesFull.Crawler_Special
@@ -293,4 +340,28 @@ option RandomZombiesFull.Smart_Special
 	type = double, min = 0, max = 100, default = 5,
 	page = RandomZombiesFull_Special_Page,
 	translation = RandomZombiesFull_Smart_Special,
+}
+
+option RandomZombiesFull.Memory_Special
+{
+    type = enum, numValues = 5, default = 2,
+    page = RandomZombiesFull_Special_Page,
+    translation = RandomZombiesFull_Memory_Special
+	valueTranslation = RandomZombiesFull_Memory_Special_values,
+}
+
+option RandomZombiesFull.Sight_Special
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Special_Page,
+    translation = RandomZombiesFull_Sight_Special,
+    valueTranslation = RandomZombiesFull_Sight_Special_values,
+}
+
+option RandomZombiesFull.Hearing_Special
+{
+    type = enum, numValues = 4, default = 2,
+    page = RandomZombiesFull_Special_Page,
+    translation = RandomZombiesFull_Hearing_Special,
+    valueTranslation = RandomZombiesFull_Hearing_Special_values,
 }
