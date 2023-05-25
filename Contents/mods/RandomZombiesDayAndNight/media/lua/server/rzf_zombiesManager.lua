@@ -61,20 +61,38 @@ end
 
 zombiesManager.updateCognition = function(zombie, targetCognition, actualCognition, cognition)
     local didChange = false
-    if targetCognition == COGNITION_SMART and actualCognition ~= COGNITION_SMART  then
-        didChange = true
-        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_SMART)
+    if targetCognition == COGNITION_DOORS and actualCognition ~= COGNITION_DOORS  then
+      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DOORS)
+      zombie:DoZombieStats()
+      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
+      didChange = true
+    elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_DOORS then
+      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DOORS)
+      while getClassFieldVal(zombie, cognition) == COGNITION_DOORS do
         zombie:DoZombieStats()
-        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
-    elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_SMART then
-        didChange = true
-        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_SMART)
-        while getClassFieldVal(zombie, cognition) == COGNITION_SMART do
-            zombie:DoZombieStats()
-        end
-        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
+      end
+      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
+      didChange = true
     end
     return didChange
+end
+
+zombiesManager.updateMemory = function(zombie, targetMemory, actualMemory, memory)
+  local didChange = false
+  if targetMemory == MEMORY_GOOD and actualMemory ~= MEMORY_GOOD  then
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_GOOD)
+    zombie:DoZombieStats()
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
+    didChange = true
+  elseif targetMemory == MEMORY_DEFAULT and actualMemory == MEMORY_GOOD then
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_GOOD)
+    while getClassFieldVal(zombie, memory) == MEMORY_GOOD do
+      zombie:DoZombieStats()
+    end
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
+    didChange = true
+  end
+  return didChange
 end
 
 -- Update a single zombie according to parameters passed
@@ -91,6 +109,8 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
     local squareYVal = square and square:getY() or 0
 
     print("[RZF] ===================")
+    print("[RZF] speed", SPEED_DEFAULT, speedTypeVal)
+    print("[RZF] cognition", COGNITION_DEFAULT, cognitionVal)
     print("[RZF] memory", MEMORY_DEFAULT, memoryVal)
     print("[RZF] sight", SIGHT_DEFAULT, sightVal)
     print("[RZF] hearing", HEARING_DEFAULT, hearingVal)
@@ -140,9 +160,9 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
       end
-    -- DEFAULT to proper zombies in case something is missed
+    -- fallback to 'proper zombies' in case something is missed
     else
-      zombiesManager.updateSpeed(zombie, SPEED_FAST_SHAMBLER, speedTypeVal)
+      zombiesManager.updateSpeed(zombie, SPEED_DEFAULT, speedTypeVal)
       if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
@@ -154,9 +174,11 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
       zid = utilities.hash(zid)
       local slice2 = utilities.hashToSlice(zid)
       if slice2 < distribution.smart then
-        zombiesManager.updateCognition(zombie, COGNITION_SMART, cognitionVal, cognition)
+        zombiesManager.updateCognition(zombie, COGNITION_DOORS, cognitionVal, cognition)
+        zombiesManager.updateMemory(zombie, MEMORY_GOOD, memoryVal, memory)
       else
         zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
+        zombiesManager.updateMemory(zombie, MEMORY_DEFAULT, memoryVal, memory)
       end
     end
 
