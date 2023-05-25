@@ -213,7 +213,6 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
   local zombieUpdated = 0;
-  -- local client = isClient()
   for i = 0, sz - 1 do
       local z = zs:get(i)
       -- removing this condition to provide 100% accuracy with zombies in the cell and zombies updated
