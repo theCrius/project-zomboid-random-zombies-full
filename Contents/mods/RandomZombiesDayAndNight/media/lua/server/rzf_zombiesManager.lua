@@ -2,18 +2,18 @@ local utilities = require("rzf_utilities")
 local zombiesManager = {}
 
 -- Default Values from Core
-local SPEED_DEFAULT         = utilities.getSandboxVarValue('ZombieLore.Speed')
+local SPEED_DEFAULT         = nil
 local SPEED_SPRINTER        = 1
 local SPEED_FAST_SHAMBLER   = 2
 local SPEED_SHAMBLER        = 3
 
-local COGNITION_DEFAULT     = utilities.getSandboxVarValue('ZombieLore.Cognition')
+local COGNITION_DEFAULT     = nil
 local COGNITION_SMART       = 1
-local MEMORY_DEFAULT        = utilities.getSandboxVarValue('ZombieLore.Memory')
+local MEMORY_DEFAULT        = nil
 local MEMORY_SMART          = 4
 
-local SIGHT_DEFAULT         = utilities.getSandboxVarValue('ZombieLore.Sight')
-local HEARING_DEFAULT       = utilities.getSandboxVarValue('ZombieLore.Hearing')
+local SIGHT_DEFAULT         = nil
+local HEARING_DEFAULT       = nil
 
 -- Shared variables for the module
 zombiesManager.tickFrequency = 10
@@ -24,6 +24,16 @@ zombiesManager.tickCount = 0
 
 zombiesManager.zombieDistribution = {}
 zombiesManager.updateFrequency = 1000
+
+zombiesManager.initZombieLoreDefaults = function()
+  SPEED_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Speed')
+  COGNITION_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Cognition')
+  MEMORY_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Memory')
+  SIGHT_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Sight')
+  HEARING_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Hearing')
+  print("[RZF] DEFAULT SANDBOX VALUES LOADED")
+  print('speed', SPEED_DEFAULT, 'cognition', COGNITION_DEFAULT, 'memory', MEMORY_DEFAULT, 'sight', SIGHT_DEFAULT, 'hearing', HEARING_DEFAULT)
+end
 
 -- Check if zombie can actually stand up
 zombiesManager.shouldBeStanding = function(zombie)
