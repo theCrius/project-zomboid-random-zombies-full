@@ -9,11 +9,19 @@ local SPEED_SHAMBLER        = 3
 
 local COGNITION_DEFAULT     = nil
 local COGNITION_SMART       = 1
+
 local MEMORY_DEFAULT        = nil
-local MEMORY_SMART          = 4
+local MEMORY_GOOD           = 1
+local MEMORY_BAD            = 4
 
 local SIGHT_DEFAULT         = nil
+local SIGHT_GOOD            = 1
+local SIGHT_BAD             = 3
+
 local HEARING_DEFAULT       = nil
+local HEARING_GOOD          = 1
+local HEARING_BAD           = 3
+
 
 -- Shared variables for the module
 zombiesManager.tickFrequency = 10
