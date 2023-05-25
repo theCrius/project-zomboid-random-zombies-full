@@ -31,6 +31,21 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_special_threshold_values_option3 = "Media Intensita' (50% o maggiore)",
   Sandbox_RandomZombiesFull_special_threshold_values_option4 = "Forte Intensita' (70% o maggiore)",
 
+  Sandbox_RandomZombiesFull_override_memory = "Sovrascrivi Memoria degli Zombie",
+  Sandbox_RandomZombiesFull_override_memory_tooltip = "Permette di gestire la memoria degli zombie nelle varie distribuzioni.",
+  Sandbox_RandomZombiesFull_override_memory_values_option1 = "Disabilitato"
+  Sandbox_RandomZombiesFull_override_memory_values_option2 = "Abilitato",
+
+  Sandbox_RandomZombiesFull_override_sight = "Sovrascrivi Vista degli Zombie",
+  Sandbox_RandomZombiesFull_override_sight_tooltip = "Permette di gestire la vista degli zombie nelle varie distribuzioni.",
+  Sandbox_RandomZombiesFull_override_sight_values_option1 = "Disabilitato"
+  Sandbox_RandomZombiesFull_override_sight_values_option2 = "Abilitato",
+
+  Sandbox_RandomZombiesFull_override_hearing = "Sovrascrivi Udito degli Zombie",
+  Sandbox_RandomZombiesFull_override_hearing_tooltip = "Permette di gestire l'udito degli zombie nelle varie distribuzioni.",
+  Sandbox_RandomZombiesFull_override_hearing_values_option1 = "Disabilitato"
+  Sandbox_RandomZombiesFull_override_hearing_values_option2 = "Abilitato",
+
 
   
   Sandbox_RandomZombiesFull_Summer_Night_Start = "Estate - Inizio della Notte",

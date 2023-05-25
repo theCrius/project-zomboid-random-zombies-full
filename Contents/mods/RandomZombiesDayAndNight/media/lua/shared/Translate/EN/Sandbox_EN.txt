@@ -31,7 +31,20 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_special_threshold_values_option3 = "Average (50% or more)",
   Sandbox_RandomZombiesFull_special_threshold_values_option4 = "Heavy (70% or more)",
 
+  Sandbox_RandomZombiesFull_override_memory = "Override Zombies Memory",
+  Sandbox_RandomZombiesFull_override_memory_tooltip = "Allow overriding memory capacity of the zombies in the various distributions.",
+  Sandbox_RandomZombiesFull_override_memory_values_option1 = "Disabled"
+  Sandbox_RandomZombiesFull_override_memory_values_option2 = "Enabled",
 
+  Sandbox_RandomZombiesFull_override_sight = "Override Zombies Sight",
+  Sandbox_RandomZombiesFull_override_sight_tooltip = "Allow overriding sight capacity of the zombies in the various distributions.",
+  Sandbox_RandomZombiesFull_override_sight_values_option1 = "Disabled"
+  Sandbox_RandomZombiesFull_override_sight_values_option2 = "Enabled",
+
+  Sandbox_RandomZombiesFull_override_hearing = "Override Zombies Hearing",
+  Sandbox_RandomZombiesFull_override_hearing_tooltip = "Allow overriding hearing capacity of the zombies in the various distributions.",
+  Sandbox_RandomZombiesFull_override_hearing_values_option1 = "Disabled"
+  Sandbox_RandomZombiesFull_override_hearing_values_option2 = "Enabled",
   
   Sandbox_RandomZombiesFull_Summer_Night_Start = "Summer Night Start",
   Sandbox_RandomZombiesFull_Summer_Night_Start_tooltip = "At what time the night start in Summer. ",

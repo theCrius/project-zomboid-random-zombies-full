@@ -39,6 +39,30 @@ option RandomZombiesFull.Special_Threshold
     valueTranslation = RandomZombiesFull_special_threshold_values,
 }
 
+option RandomZombiesFull.Override_Memory
+{
+	type = enum, numValues = 2, default = 1,
+	page = RandomZombiesFull_main_page,
+	translation = RandomZombiesFull_override_memory,
+	valueTranslation = RandomZombiesFull_override_memory_values,
+}
+
+option RandomZombiesFull.Override_Sight
+{
+	type = enum, numValues = 2, default = 1,
+	page = RandomZombiesFull_main_page,
+	translation = RandomZombiesFull_override_sight,
+	valueTranslation = RandomZombiesFull_override_sight_values,
+}
+
+option RandomZombiesFull.Override_Hearing
+{
+	type = enum, numValues = 2, default = 1,
+	page = RandomZombiesFull_main_page,
+	translation = RandomZombiesFull_override_hearing,
+	valueTranslation = RandomZombiesFull_override_hearing_values,
+}
+
 
 
 option RandomZombiesFull.Summer_Night_Start
