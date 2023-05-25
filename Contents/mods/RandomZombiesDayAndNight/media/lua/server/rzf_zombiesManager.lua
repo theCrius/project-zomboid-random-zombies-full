@@ -2,25 +2,32 @@ local utilities = require("rzf_utilities")
 local zombiesManager = {}
 
 -- Default Values from Core
-local SPEED_DEFAULT         = nil
+local SPEED_DEFAULT         = 2
 local SPEED_SPRINTER        = 1
 local SPEED_FAST_SHAMBLER   = 2
 local SPEED_SHAMBLER        = 3
 
-local COGNITION_DEFAULT     = nil
-local COGNITION_SMART       = 1
+local COGNITION_DEFAULT     = 2
+local COGNITION_DOORS       = 1
+local COGNITION_BASIC       = 3
 
-local MEMORY_DEFAULT        = nil
+-- Memory 1 - 1250 - Long
+-- Memory 2 - 800  - Normal
+-- Memory 3 - 500  - Short
+-- Memory 4 - 25   - None
+-- Memory 5 - ??   - random
+local MEMORY_DEFAULT        = 2
 local MEMORY_GOOD           = 1
-local MEMORY_BAD            = 4
+local MEMORY_POOR           = 4
+local MEMORY_NONE           = 5
 
-local SIGHT_DEFAULT         = nil
+local SIGHT_DEFAULT         = 2
 local SIGHT_GOOD            = 1
-local SIGHT_BAD             = 3
+local SIGHT_POOR            = 3
 
-local HEARING_DEFAULT       = nil
+local HEARING_DEFAULT       = 2
 local HEARING_GOOD          = 1
-local HEARING_BAD           = 3
+local HEARING_POOR          = 3
 
 
 -- Shared variables for the module
