@@ -7,9 +7,6 @@ local utilities = require('rzf_utilities')
 local configuration = {}
 local currentPreset = 'default'
 
--- Read Lore Configuration and save it
-zombiesManager.initZombieLoreDefaults()
-
 -- Check if presets are actually enabled, expect input as 'dayTime', 'nightTime' or 'specialTime'
 local function isPresetEnabled(presetName)
     local presetFound = false

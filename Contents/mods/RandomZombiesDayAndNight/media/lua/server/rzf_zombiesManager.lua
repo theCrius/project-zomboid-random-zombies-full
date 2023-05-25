@@ -33,14 +33,6 @@ zombiesManager.tickCount = 0
 zombiesManager.zombieDistribution = {}
 zombiesManager.updateFrequency = 1000
 
-zombiesManager.initZombieLoreDefaults = function()
-  SPEED_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Speed')
-  COGNITION_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Cognition')
-  MEMORY_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Memory')
-  SIGHT_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Sight')
-  HEARING_DEFAULT = utilities.getSandboxVarValue('ZombieLore.Hearing')
-end
-
 -- Check if zombie can actually stand up
 zombiesManager.shouldBeStanding = function(zombie)
     return not zombie:isKnockedDown()
