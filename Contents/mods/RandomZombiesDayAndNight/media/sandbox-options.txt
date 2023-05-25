@@ -346,8 +346,8 @@ option RandomZombiesFull.Memory_Special
 {
     type = enum, numValues = 5, default = 2,
     page = RandomZombiesFull_Special_Page,
-    translation = RandomZombiesFull_Memory_Special
-	valueTranslation = RandomZombiesFull_Memory_Special_values,
+    translation = RandomZombiesFull_Memory_Special,
+    valueTranslation = RandomZombiesFull_Memory_Special_values,
 }
 
 option RandomZombiesFull.Sight_Special
