@@ -108,7 +108,10 @@ utilities.LoadConfiguration = function()
     dayTime = SandboxVars.RandomZombiesFull.Enable_Day,
     nightTime = SandboxVars.RandomZombiesFull.Enable_Night,
     specialTime = SandboxVars.RandomZombiesFull.Enable_Special,
-    specialThreshold = SandboxVars.RandomZombiesFull.Special_Threshold
+    specialThreshold = SandboxVars.RandomZombiesFull.Special_Threshold,
+    overrideMemory = SandboxVars.RandomZombiesFull.Override_Memory,
+    overrideSight = SandboxVars.RandomZombiesFull.Override_Sight,
+    overrideHearing = SandboxVars.RandomZombiesFull.Override_Hearing
   }
   configuration.schedule = {
     summer = {
@@ -137,6 +140,9 @@ utilities.LoadConfiguration = function()
     normal = SandboxVars.RandomZombiesFull.Normal_Day,
     tough = SandboxVars.RandomZombiesFull.Tough_Day,
     smart = SandboxVars.RandomZombiesFull.Smart_Day,
+    memory = SandboxVars.RandomZombiesFull.Memory_Day,
+    sight = SandboxVars.RandomZombiesFull.Sight_Day,
+    hearing = SandboxVars.RandomZombiesFull.Hearing_Day
   }
   configuration.nightTime = {
     crawler = SandboxVars.RandomZombiesFull.Crawler_Night,
@@ -147,6 +153,9 @@ utilities.LoadConfiguration = function()
     normal = SandboxVars.RandomZombiesFull.Normal_Night,
     tough = SandboxVars.RandomZombiesFull.Tough_Night,
     smart = SandboxVars.RandomZombiesFull.Smart_Night,
+    memory = SandboxVars.RandomZombiesFull.Memory_Night,
+    sight = SandboxVars.RandomZombiesFull.Sight_Night,
+    hearing = SandboxVars.RandomZombiesFull.Hearing_Night
   }
   configuration.specialTime = {
     crawler = SandboxVars.RandomZombiesFull.Crawler_Special,
@@ -157,6 +166,9 @@ utilities.LoadConfiguration = function()
     normal = SandboxVars.RandomZombiesFull.Normal_Special,
     tough = SandboxVars.RandomZombiesFull.Tough_Special,
     smart = SandboxVars.RandomZombiesFull.Smart_Special,
+    memory = SandboxVars.RandomZombiesFull.Memory_Special,
+    sight = SandboxVars.RandomZombiesFull.Sight_Special,
+    hearing = SandboxVars.RandomZombiesFull.Hearing_Special
   }
 
   return configuration
