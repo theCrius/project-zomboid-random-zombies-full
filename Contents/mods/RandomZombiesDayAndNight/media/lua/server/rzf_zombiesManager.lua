@@ -16,18 +16,21 @@ local COGNITION_BASIC       = 3
 -- Memory 3 - 500  - Short
 -- Memory 4 - 25   - None
 -- Memory 5 - ??   - random
+local MEMORY_LONG           = 1
 local MEMORY_DEFAULT        = 2
-local MEMORY_GOOD           = 1
-local MEMORY_POOR           = 4
-local MEMORY_NONE           = 5
+local MEMORY_SHORT          = 3
+local MEMORY_NONE           = 4
+local MEMORY_RANDOM         = 5
 
-local SIGHT_DEFAULT         = 2
 local SIGHT_GOOD            = 1
+local SIGHT_DEFAULT         = 2
 local SIGHT_POOR            = 3
+local SIGHT_RANDOM          = 4
 
-local HEARING_DEFAULT       = 2
 local HEARING_GOOD          = 1
+local HEARING_DEFAULT       = 2
 local HEARING_POOR          = 3
+local HEARING_RANDOM        = 3
 
 
 -- Shared variables for the module
@@ -79,14 +82,14 @@ end
 
 zombiesManager.updateMemory = function(zombie, targetMemory, actualMemory, memory)
   local didChange = false
-  if targetMemory == MEMORY_GOOD and actualMemory ~= MEMORY_GOOD  then
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_GOOD)
+  if targetMemory == MEMORY_LONG and actualMemory ~= MEMORY_LONG  then
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_LONG)
     zombie:DoZombieStats()
     utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
     didChange = true
-  elseif targetMemory == MEMORY_DEFAULT and actualMemory == MEMORY_GOOD then
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_GOOD)
-    while getClassFieldVal(zombie, memory) == MEMORY_GOOD do
+  elseif targetMemory == MEMORY_DEFAULT and actualMemory == MEMORY_LONG then
+    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_LONG)
+    while getClassFieldVal(zombie, memory) == MEMORY_LONG do
       zombie:DoZombieStats()
     end
     utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
@@ -169,13 +172,13 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
       end
     end
 
-    -- update smart
+    -- update smart zombies
     if distribution.smart > 0 then
       zid = utilities.hash(zid)
       local slice2 = utilities.hashToSlice(zid)
       if slice2 < distribution.smart then
         zombiesManager.updateCognition(zombie, COGNITION_DOORS, cognitionVal, cognition)
-        zombiesManager.updateMemory(zombie, MEMORY_GOOD, memoryVal, memory)
+        zombiesManager.updateMemory(zombie, MEMORY_LONG, memoryVal, memory)
       else
         zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
         zombiesManager.updateMemory(zombie, MEMORY_DEFAULT, memoryVal, memory)
