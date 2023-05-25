@@ -45,10 +45,10 @@ end
 zombiesManager.updateSpeed = function(zombie, targetSpeed, actualSpeed)
     local didChange = false
     if actualSpeed ~= targetSpeed then
-        getSandboxOptions():set("ZombieLore.Speed", targetSpeed)
+        utilities.setSandboxVarValue('ZombieLore.Speed', targetSpeed)
         zombie:makeInactive(true)
         zombie:makeInactive(false)
-        getSandboxOptions():set("ZombieLore.Speed", SPEED_FAST_SHAMBLER)
+        utilities.setSandboxVarValue('ZombieLore.Speed', SPEED_DEFAULT)
         didChange = true
     end
     return didChange
@@ -58,16 +58,16 @@ zombiesManager.updateCognition = function(zombie, targetCognition, actualCogniti
     local didChange = false
     if targetCognition == COGNITION_SMART and actualCognition ~= COGNITION_SMART  then
         didChange = true
-        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_SMART)
+        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_SMART)
         zombie:DoZombieStats()
-        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
+        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
     elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_SMART then
         didChange = true
-        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_RANDOM)
+        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_SMART)
         while getClassFieldVal(zombie, cognition) == COGNITION_SMART do
             zombie:DoZombieStats()
         end
-        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
+        utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
     end
     return didChange
 end
@@ -135,7 +135,7 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
       end
     end
 
-    -- update cognition
+    -- update smart
     if distribution.smart > 0 then
       zid = utilities.hash(zid)
       local slice2 = utilities.hashToSlice(zid)
