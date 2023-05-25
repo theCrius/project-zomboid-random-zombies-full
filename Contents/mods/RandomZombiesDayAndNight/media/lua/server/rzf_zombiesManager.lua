@@ -45,9 +45,7 @@ zombiesManager.updateFrequency = 1000
 
 -- Check if zombie can actually stand up
 zombiesManager.shouldBeStanding = function(zombie)
-    return not zombie:isKnockedDown()
-        and zombie:getCrawlerType() == 0
-        and not zombie:wasFakeDead()
+  return not zombie:isKnockedDown() and (zombie:getCrawlerType() == 0) and not zombie:wasFakeDead()
 end
 
 zombiesManager.updateSpeed = function(zombie, targetSpeed, actualSpeed)
@@ -155,25 +153,12 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
       end
-    -- fallback to 'proper zombies' in case something is missed
+    -- fallback to 'proper zombies' speed in case something is missed
     else
       zombiesManager.updateSpeed(zombie, SPEED_DEFAULT, speedTypeVal)
       if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
-      end
-    end
-
-    -- update smart zombies
-    if distribution.smart > 0 then
-      zid = utilities.hash(zid)
-      local slice2 = utilities.hashToSlice(zid)
-      if slice2 < distribution.smart then
-        zombiesManager.updateCognition(zombie, COGNITION_DOORS, cognitionVal, cognition)
-        zombiesManager.updateMemory(zombie, MEMORY_LONG, memoryVal, memory)
-      else
-        zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
-        zombiesManager.updateMemory(zombie, MEMORY_DEFAULT, memoryVal, memory)
       end
     end
 
@@ -191,6 +176,19 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
           health = health + 3.5
         end
         zombie:setHealth(health)
+      end
+    end
+
+    -- update smart zombies
+    if distribution.smart > 0 then
+      zid = utilities.hash(zid)
+      local slice2 = utilities.hashToSlice(zid)
+      if slice2 < distribution.smart then
+        zombiesManager.updateCognition(zombie, COGNITION_DOORS, cognitionVal, cognition)
+        zombiesManager.updateMemory(zombie, MEMORY_LONG, memoryVal, memory)
+      else
+        zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
+        zombiesManager.updateMemory(zombie, MEMORY_DEFAULT, memoryVal, memory)
       end
     end
 
