@@ -179,7 +179,12 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
 
     -- update toughness
     if distribution.normal ~= 100 then
-      if not zombie:getAttackedBy() then
+      -- Only update health of zombies that are not on fire and not being attacked.
+      -- The getAttackedBy() check returns truthy if the last damage the zombie took was from a player...
+      -- however if the zombie is on fire, then any fire damage will cause the "AttackedBy" status to expire,
+      -- so we need to also check for burning, otherwise burning zombies will regen health.
+      -- See https://github.com/theCrius/project-zomboid-random-zombies-full/issues/9 for more info.
+      if not zombie:getAttackedBy() and not zombie:isOnFire() then
         zid = utilities.hash(zid)
         local slice3 = utilities.hashToSlice(zid)
         local health = 0.1 * ZombRand(4)
