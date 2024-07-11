@@ -1,6 +1,10 @@
 version=1
 id=2888099799
 title=Random Zombies - Day and Night
+description=----------------------------------------------------------------------------------------
+description=This Mod is in maintenance mode until new major update from Project Zomboid are released
+description=If anyone want to contribute, please scroll down until you find the link to the source code on github. I will review contributions within 24-48h.
+description=----------------------------------------------------------------------------------------
 description=Add distribution of different type of zombies with two separate distribution sets, one for the day and one for the night. Also a special schedule is available in which you can choose how the zombies act when there is rain, snow or fog.
 description=Works on both single player and multiplayer.
 description=
