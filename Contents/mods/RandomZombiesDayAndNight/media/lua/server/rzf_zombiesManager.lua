@@ -111,13 +111,13 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
     local squareXVal = square and square:getX() or 0
     local squareYVal = square and square:getY() or 0
 
-    print("[RZF] ===================")
-    print("[RZF] speed", SPEED_DEFAULT, speedTypeVal)
-    print("[RZF] cognition", COGNITION_DEFAULT, cognitionVal)
-    print("[RZF] memory", MEMORY_DEFAULT, memoryVal)
-    print("[RZF] sight", SIGHT_DEFAULT, sightVal)
-    print("[RZF] hearing", HEARING_DEFAULT, hearingVal)
-    print("[RZF] ===================")
+    -- print("[RZF] ===================")
+    -- print("[RZF] speed", SPEED_DEFAULT, speedTypeVal)
+    -- print("[RZF] cognition", COGNITION_DEFAULT, cognitionVal)
+    -- print("[RZF] memory", MEMORY_DEFAULT, memoryVal)
+    -- print("[RZF] sight", SIGHT_DEFAULT, sightVal)
+    -- print("[RZF] hearing", HEARING_DEFAULT, hearingVal)
+    -- print("[RZF] ===================")
 
     -- NOTE (RandomZombie - Belette) we have to include X and Y in the check to catch zombies that have been recycled
     -- from _intended_ default state (i.e. RZ happened to assign it to default bucket) to _unintended_
