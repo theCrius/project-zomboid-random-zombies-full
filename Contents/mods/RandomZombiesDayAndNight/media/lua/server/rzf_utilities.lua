@@ -230,4 +230,12 @@ utilities.tableHasValue = function (table, findValue)
   return false
 end
 
+utilities.getSandboxVarValue = function (name) 
+  return getSandboxOptions():getOptionByName(name):getValue() 
+end 
+ 
+utilities.setSandboxVarValue = function (name, value) 
+  return getSandboxOptions():set(name, value) 
+end 
+
 return utilities
