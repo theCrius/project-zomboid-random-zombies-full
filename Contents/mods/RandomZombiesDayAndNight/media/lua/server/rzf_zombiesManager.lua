@@ -216,13 +216,18 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
   return false
 end
 
--- Update all zombies in a cell according to the active distribution
+-- Courtesy of Burryaga
+
+--How many zombies to update at once
+zombiesManager.zombieBatches = 300
+
+-- Update zombies in batch to prevent server chocking in high zombies/players population
 zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   zombiesManager.tickCount = zombiesManager.tickCount + 1
   if zombiesManager.tickCount % zombiesManager.tickFrequency ~= 1 then
       return
   end
-  -- print("[RZF] Updating zombies...")
+  print("[RZF] Updating zombies...")
   zombiesManager.tickCount = 1
 
   local now = getTimestampMs()
@@ -244,7 +249,9 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
 
   local zs = getCell():getZombieList()
   local sz = zs:size()
-  -- print("[RZF] Zombies in active cell(s): ", sz)
+
+  zombiesManager.tickCount = (zombiesManager.tickCount + 1) % zombiesManager.zombieBatches
+  print("[RZF] Zombies in active cell(s): ", sz)
   local ZombieObj = IsoZombie.new(nil)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
@@ -252,16 +259,16 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   local sight = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.sight")
   local hearing = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.hearing")
   local zombieUpdated = 0;
-  for i = 0, sz - 1 do
+
+    for i = zombiesManager.tickCount, sz - 1, zombiesManager.zombieBatches do
       local z = zs:get(i)
-      -- removing this condition to provide 100% accuracy with zombies in the cell and zombies updated
-      -- if not (client and z:isRemoteZombie()) then
-          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition, memory, sight, hearing)
-          zombieUpdated = zombieUpdated + 1
-      -- end
+      zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition, memory, sight, hearing)
+      zombieUpdated = zombieUpdated + 1
+      print("[RZF] Loop done: ", i)
   end
-  -- print("[RZF] Zombies updated: ", zombieUpdated)
+  print("[RZF] Zombies updated: ", zombieUpdated)
 end
+-- /end code by Burryaga
 
 zombiesManager.updateAllZombiesWithParams = function()
   zombiesManager.updateAllZombies(zombiesManager.zombieDistribution, zombiesManager.updateFrequency)
