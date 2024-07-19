@@ -7,6 +7,9 @@ Sandbox_EN = {
   Sandbox_RandomZombiesFull_Frequency = "Frequenza di Update",
   Sandbox_RandomZombiesFull_Frequency_tooltip = "Intervallo in millisecondi tra updates. Un numero piu' alto significa meno richieste alla CPU ma anche meno reattivita' del mod nel sovrascrivere gli attributi degli zombie.",
 
+  Sandbox_RandomZombiesFull_ZombiesChunkUpdate = "Zombies da aggiornare",
+  Sandbox_RandomZombiesFull_ZombiesChunkUpdate_tooltip = "Il numero di zombie da aggiornare in un singolo update. Questa opzione permette di gestire meglio i server con alta popolazione di zombie, alleviando stuttering dovuto dall'avere troppi zombies attivi.",
+
   Sandbox_RandomZombiesFull_enable_day = "Attiva Distribuzione Giornaliera",
   Sandbox_RandomZombiesFull_enable_day_tooltip = "Attiva per sovrascrivere il normale setting per gli zombie durante il giorno, seguendo la distribuzione giornaliera impostata.",
   Sandbox_RandomZombiesFull_enable_day_values_option1 = "Disabilitata"

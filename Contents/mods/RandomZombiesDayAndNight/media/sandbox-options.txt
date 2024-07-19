@@ -7,6 +7,13 @@ option RandomZombiesFull.Frequency
 	translation = RandomZombiesFull_Frequency,
 }
 
+option RandomZombiesFull.ZombiesChunkUpdate
+{
+	type = integer, min = 50, max = 1000, default = 300,
+	page = RandomZombiesFull_main_page,
+	translation = RandomZombiesFull_ZombiesChunkUpdate,
+}
+
 option RandomZombiesFull.Enable_Day
 {
 	type = enum, numValues = 2, default = 2,
