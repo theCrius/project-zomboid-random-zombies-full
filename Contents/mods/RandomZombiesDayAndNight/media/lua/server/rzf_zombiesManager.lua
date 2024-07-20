@@ -39,9 +39,7 @@ zombiesManager.lastTicks = {16, 16, 16, 16, 16}
 zombiesManager.lastTicksIdx = 1
 zombiesManager.last = getTimestampMs()
 zombiesManager.tickCount = 0
-
 zombiesManager.zombieDistribution = {}
-zombiesManager.updateFrequency = 1000
 
 -- Check if zombie can actually stand up
 zombiesManager.shouldBeStanding = function(zombie)
@@ -217,38 +215,33 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
 end
 
 -- Update zombies in batch to prevent server chocking in high zombies/players population
-zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency, zombiesChunkUpdate)
+zombiesManager.updateAllZombies = function(zombieDistribution, zombiesChunkUpdate)
   local zs = getCell():getZombieList()
   local sz = zs:size()
 
   zombiesManager.tickCount = (zombiesManager.tickCount + 1) % zombiesChunkUpdate
-  print("[RZF] Zombies in active cell(s): ", sz)
+  -- print("[RZF] Zombies in active cell(s): ", sz)
   local ZombieObj = IsoZombie.new(nil)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
   local memory = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.memory")
   local sight = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.sight")
   local hearing = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.hearing")
-  local zombieUpdated = 0;
   for i = zombiesManager.tickCount, sz - 1, zombiesChunkUpdate do
       local z = zs:get(i)
       zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition, memory, sight, hearing)
-      zombieUpdated = zombieUpdated + 1
   end
-  print("[RZF] Zombies updated: ", zombieUpdated)
 end
 
 zombiesManager.updateAllZombiesWithParams = function()
-  zombiesManager.updateAllZombies(zombiesManager.zombieDistribution, zombiesManager.updateFrequency, zombiesManager.ZombiesChunkUpdate)
+  zombiesManager.updateAllZombies(zombiesManager.zombieDistribution, zombiesManager.ZombiesChunkUpdate)
 end
 
 -- enable the process of updating the zombies
-zombiesManager.enable = function(zombieDistribution, updateFrequency, zombiesChunkUpdate)
-  -- print ("[RZF] Override activated with update frequency of ", updateFrequency, " msec")
+zombiesManager.enable = function(zombieDistribution, zombiesChunkUpdate)
   local prevTickMs = zombiesManager.lastTicks[((zombiesManager.lastTicksIdx + 3) % 5) + 1]
   zombiesManager.last = getTimestampMs() - prevTickMs*zombiesManager.tickCount
   zombiesManager.zombieDistribution = zombieDistribution
-  zombiesManager.updateFrequency = updateFrequency
   zombiesManager.ZombiesChunkUpdate = zombiesChunkUpdate
   Events.OnTick.Add(zombiesManager.updateAllZombiesWithParams)
 end

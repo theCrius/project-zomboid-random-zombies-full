@@ -1,15 +1,8 @@
 VERSION = 1,
 
-option RandomZombiesFull.Frequency
-{
-	type = integer, min = 1000, max = 60000, default = 7500,
-	page = RandomZombiesFull_main_page,
-	translation = RandomZombiesFull_Frequency,
-}
-
 option RandomZombiesFull.ZombiesChunkUpdate
 {
-	type = integer, min = 50, max = 1000, default = 300,
+	type = integer, min = 60, max = 600, default = 180,
 	page = RandomZombiesFull_main_page,
 	translation = RandomZombiesFull_ZombiesChunkUpdate,
 }
