@@ -59,6 +59,7 @@ end
 utilities.LoadConfiguration = function()
   local configuration = {}
   configuration.updateFrequency = SandboxVars.RandomZombiesFull.Frequency
+  configuration.zombiesChunkUpdate = SandboxVars.RandomZombiesFull.ZombiesChunkUpdate
   configuration.toggles = {
     dayTime = SandboxVars.RandomZombiesFull.Enable_Day,
     nightTime = SandboxVars.RandomZombiesFull.Enable_Night,

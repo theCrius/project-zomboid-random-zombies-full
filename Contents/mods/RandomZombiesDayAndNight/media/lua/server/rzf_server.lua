@@ -56,7 +56,7 @@ local function UpdatePreset()
                 zombiesManager.disable()
             end
             print("[RZF] Enabling new preset")
-            zombiesManager.enable(zombieDistribution, configuration.updateFrequency)
+            zombiesManager.enable(zombieDistribution, configuration.updateFrequency, configuration.zombiesChunkUpdate)
             currentPreset = detectedPreset
             print("[RZF] Schedule Preset changed ---> ", currentPreset)
         else
