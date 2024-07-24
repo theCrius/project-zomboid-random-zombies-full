@@ -2,36 +2,12 @@ local utilities = require("rzf_utilities")
 local zombiesManager = {}
 
 -- Default Values from Core
-local SPEED_DEFAULT         = 2
 local SPEED_SPRINTER        = 1
 local SPEED_FAST_SHAMBLER   = 2
 local SPEED_SHAMBLER        = 3
-
-local COGNITION_DEFAULT     = 2
-local COGNITION_DOORS       = 1
-local COGNITION_BASIC       = 3
-
--- Memory 1 - 1250 - Long
--- Memory 2 - 800  - Normal
--- Memory 3 - 500  - Short
--- Memory 4 - 25   - None
--- Memory 5 - ??   - random
-local MEMORY_LONG           = 1
-local MEMORY_DEFAULT        = 2
-local MEMORY_SHORT          = 3
-local MEMORY_NONE           = 4
-local MEMORY_RANDOM         = 5
-
-local SIGHT_GOOD            = 1
-local SIGHT_DEFAULT         = 2
-local SIGHT_POOR            = 3
-local SIGHT_RANDOM          = 4
-
-local HEARING_GOOD          = 1
-local HEARING_DEFAULT       = 2
-local HEARING_POOR          = 3
-local HEARING_RANDOM        = 3
-
+local COGNITION_SMART       = 1
+local COGNITION_DEFAULT     = 3
+local COGNITION_RANDOM      = 4
 
 -- Shared variables for the module
 zombiesManager.tickFrequency = 10
@@ -53,10 +29,10 @@ end
 zombiesManager.updateSpeed = function(zombie, targetSpeed, actualSpeed)
     local didChange = false
     if actualSpeed ~= targetSpeed then
-        utilities.setSandboxVarValue('ZombieLore.Speed', targetSpeed)
+        getSandboxOptions():set("ZombieLore.Speed", targetSpeed)
         zombie:makeInactive(true)
         zombie:makeInactive(false)
-        utilities.setSandboxVarValue('ZombieLore.Speed', SPEED_DEFAULT)
+        getSandboxOptions():set("ZombieLore.Speed", SPEED_FAST_SHAMBLER)
         didChange = true
     end
     return didChange
@@ -64,60 +40,31 @@ end
 
 zombiesManager.updateCognition = function(zombie, targetCognition, actualCognition, cognition)
     local didChange = false
-    if targetCognition == COGNITION_DOORS and actualCognition ~= COGNITION_DOORS  then
-      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DOORS)
-      zombie:DoZombieStats()
-      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
-      didChange = true
-    elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_DOORS then
-      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DOORS)
-      while getClassFieldVal(zombie, cognition) == COGNITION_DOORS do
+    if targetCognition == COGNITION_SMART and actualCognition ~= COGNITION_SMART  then
+        didChange = true
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_SMART)
         zombie:DoZombieStats()
-      end
-      utilities.setSandboxVarValue('ZombieLore.Cognition', COGNITION_DEFAULT)
-      didChange = true
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
+    elseif targetCognition == COGNITION_DEFAULT and actualCognition == COGNITION_SMART then
+        didChange = true
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_RANDOM)
+        while getClassFieldVal(zombie, cognition) == COGNITION_SMART do
+            zombie:DoZombieStats()
+        end
+        getSandboxOptions():set("ZombieLore.Cognition", COGNITION_DEFAULT)
     end
     return didChange
 end
 
-zombiesManager.updateMemory = function(zombie, targetMemory, actualMemory, memory)
-  local didChange = false
-  if targetMemory == MEMORY_LONG and actualMemory ~= MEMORY_LONG  then
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_LONG)
-    zombie:DoZombieStats()
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
-    didChange = true
-  elseif targetMemory == MEMORY_DEFAULT and actualMemory == MEMORY_LONG then
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_LONG)
-    while getClassFieldVal(zombie, memory) == MEMORY_LONG do
-      zombie:DoZombieStats()
-    end
-    utilities.setSandboxVarValue('ZombieLore.Cognition', MEMORY_DEFAULT)
-    didChange = true
-  end
-  return didChange
-end
-
 -- Update a single zombie according to parameters passed
-zombiesManager.updateZombie = function(zombie, distribution, speedType, cognition, memory, sight, hearing)
+zombiesManager.updateZombie = function(zombie, distribution, speedType, cognition)
     local modData = zombie:getModData()
     local speedTypeVal = getClassFieldVal(zombie, speedType)
     local cognitionVal = getClassFieldVal(zombie, cognition)
-    local memoryVal = getClassFieldVal(zombie, memory)
-    local sightVal = getClassFieldVal(zombie, sight)
-    local hearingVal = getClassFieldVal(zombie, hearing)
     local crawlingVal = zombie:isCrawling()
     local square = zombie:getCurrentSquare()
     local squareXVal = square and square:getX() or 0
     local squareYVal = square and square:getY() or 0
-
-    print("[RZF] ===================")
-    print("[RZF] speed", SPEED_DEFAULT, speedTypeVal)
-    print("[RZF] cognition", COGNITION_DEFAULT, cognitionVal)
-    print("[RZF] memory", MEMORY_DEFAULT, memoryVal)
-    print("[RZF] sight", SIGHT_DEFAULT, sightVal)
-    print("[RZF] hearing", HEARING_DEFAULT, hearingVal)
-    print("[RZF] ===================")
 
     -- NOTE (RandomZombie - Belette) we have to include X and Y in the check to catch zombies that have been recycled
     -- from _intended_ default state (i.e. RZ happened to assign it to default bucket) to _unintended_
@@ -163,36 +110,29 @@ zombiesManager.updateZombie = function(zombie, distribution, speedType, cognitio
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
       end
-    -- fallback to 'proper zombies' in case something is missed
+    -- DEFAULT to proper zombies in case something is missed
     else
-      zombiesManager.updateSpeed(zombie, SPEED_DEFAULT, speedTypeVal)
+      zombiesManager.updateSpeed(zombie, SPEED_FAST_SHAMBLER, speedTypeVal)
       if zombie:isCrawling() and zombiesManager.shouldBeStanding(zombie) then
         zombie:toggleCrawling()
         zombie:setCanWalk(true);
       end
     end
 
-    -- update smart zombies
+    -- update cognition
     if distribution.smart > 0 then
       zid = utilities.hash(zid)
       local slice2 = utilities.hashToSlice(zid)
       if slice2 < distribution.smart then
-        zombiesManager.updateCognition(zombie, COGNITION_DOORS, cognitionVal, cognition)
-        zombiesManager.updateMemory(zombie, MEMORY_LONG, memoryVal, memory)
+        zombiesManager.updateCognition(zombie, COGNITION_SMART, cognitionVal, cognition)
       else
         zombiesManager.updateCognition(zombie, COGNITION_DEFAULT, cognitionVal, cognition)
-        zombiesManager.updateMemory(zombie, MEMORY_DEFAULT, memoryVal, memory)
       end
     end
 
     -- update toughness
     if distribution.normal ~= 100 then
-      -- Only update health of zombies that are not on fire and not being attacked.
-      -- The getAttackedBy() check returns truthy if the last damage the zombie took was from a player...
-      -- however if the zombie is on fire, then any fire damage will cause the "AttackedBy" status to expire,
-      -- so we need to also check for burning, otherwise burning zombies will regen health.
-      -- See https://github.com/theCrius/project-zomboid-random-zombies-full/issues/9 for more info.
-      if not zombie:getAttackedBy() and not zombie:isOnFire() then
+      if not zombie:getAttackedBy() then
         zid = utilities.hash(zid)
         local slice3 = utilities.hashToSlice(zid)
         local health = 0.1 * ZombRand(4)
@@ -248,15 +188,13 @@ zombiesManager.updateAllZombies = function(zombieDistribution, updateFrequency)
   local ZombieObj = IsoZombie.new(nil)
   local cognition = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.cognition")
   local speedType = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.speedType")
-  local memory = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.memory")
-  local sight = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.sight")
-  local hearing = utilities.findField(ZombieObj, "public int zombie.characters.IsoZombie.hearing")
   local zombieUpdated = 0;
+  -- local client = isClient()
   for i = 0, sz - 1 do
       local z = zs:get(i)
       -- removing this condition to provide 100% accuracy with zombies in the cell and zombies updated
       -- if not (client and z:isRemoteZombie()) then
-          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition, memory, sight, hearing)
+          zombiesManager.updateZombie(z, zombieDistribution, speedType, cognition)
           zombieUpdated = zombieUpdated + 1
       -- end
   end
