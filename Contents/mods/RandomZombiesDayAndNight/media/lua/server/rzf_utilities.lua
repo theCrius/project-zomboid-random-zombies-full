@@ -54,51 +54,6 @@ utilities.ValidateConfiguration = function()
   then
     error("[RZF] Config value is not a number for the Night Settings")
   end
-  
-  if SandboxVars.RandomZombiesFull.Crawler_Night +
-    SandboxVars.RandomZombiesFull.Shambler_Night +
-    SandboxVars.RandomZombiesFull.FastShambler_Night +
-    SandboxVars.RandomZombiesFull.Sprinter_Night
-    ~= 100 then
-    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Night Settings do not add up to 100")
-  end
-
-  if SandboxVars.RandomZombiesFull.Crawler_Day +
-    SandboxVars.RandomZombiesFull.Shambler_Day +
-    SandboxVars.RandomZombiesFull.FastShambler_Day +
-    SandboxVars.RandomZombiesFull.Sprinter_Day
-    ~= 100 then
-    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Day Settings do not add up to 100")
-  end
-
-  if SandboxVars.RandomZombiesFull.Crawler_Special +
-    SandboxVars.RandomZombiesFull.Shambler_Special +
-    SandboxVars.RandomZombiesFull.FastShambler_Special +
-    SandboxVars.RandomZombiesFull.Sprinter_Special
-    ~= 100 then
-    error("[RZF] Crawler, Shambler, FastShambler and Sprinter for the Special Settings do not add up to 100")
-  end
-
-  if SandboxVars.RandomZombiesFull.Fragile_Night +
-    SandboxVars.RandomZombiesFull.Normal_Night +
-    SandboxVars.RandomZombiesFull.Tough_Night
-    ~= 100 then
-    error("[RZF] Fragile, Normal and Tough for the Night Settings do not add up to 100")
-  end
-
-  if SandboxVars.RandomZombiesFull.Fragile_Day +
-    SandboxVars.RandomZombiesFull.Normal_Day +
-    SandboxVars.RandomZombiesFull.Tough_Day
-    ~= 100 then
-    error("[RZF] Fragile, Normal and Tough for the Day Settings do not add up to 100")
-  end
-
-  if SandboxVars.RandomZombiesFull.Fragile_Special +
-    SandboxVars.RandomZombiesFull.Normal_Special +
-    SandboxVars.RandomZombiesFull.Tough_Special
-    ~= 100 then
-    error("[RZF] Fragile, Normal and Tough for the Special Settings do not add up to 100")
-  end
 end
 
 utilities.LoadConfiguration = function()
@@ -128,38 +83,90 @@ utilities.LoadConfiguration = function()
       endTime = SandboxVars.RandomZombiesFull.Spring_Night_End
     }
   }
-  configuration.dayTime = {
-    crawler = SandboxVars.RandomZombiesFull.Crawler_Day,
-    shambler = SandboxVars.RandomZombiesFull.Shambler_Day,
-    fastShambler = SandboxVars.RandomZombiesFull.FastShambler_Day,
-    sprinter = SandboxVars.RandomZombiesFull.Sprinter_Day,
-    fragile = SandboxVars.RandomZombiesFull.Fragile_Day,
-    normal = SandboxVars.RandomZombiesFull.Normal_Day,
-    tough = SandboxVars.RandomZombiesFull.Tough_Day,
-    smart = SandboxVars.RandomZombiesFull.Smart_Day,
-  }
-  configuration.nightTime = {
-    crawler = SandboxVars.RandomZombiesFull.Crawler_Night,
-    shambler = SandboxVars.RandomZombiesFull.Shambler_Night,
-    fastShambler = SandboxVars.RandomZombiesFull.FastShambler_Night,
-    sprinter = SandboxVars.RandomZombiesFull.Sprinter_Night,
-    fragile = SandboxVars.RandomZombiesFull.Fragile_Night,
-    normal = SandboxVars.RandomZombiesFull.Normal_Night,
-    tough = SandboxVars.RandomZombiesFull.Tough_Night,
-    smart = SandboxVars.RandomZombiesFull.Smart_Night,
-  }
-  configuration.specialTime = {
-    crawler = SandboxVars.RandomZombiesFull.Crawler_Special,
-    shambler = SandboxVars.RandomZombiesFull.Shambler_Special,
-    fastShambler = SandboxVars.RandomZombiesFull.FastShambler_Special,
-    sprinter = SandboxVars.RandomZombiesFull.Sprinter_Special,
-    fragile = SandboxVars.RandomZombiesFull.Fragile_Special,
-    normal = SandboxVars.RandomZombiesFull.Normal_Special,
-    tough = SandboxVars.RandomZombiesFull.Tough_Special,
-    smart = SandboxVars.RandomZombiesFull.Smart_Special,
-  }
+  configuration.dayTime = utilities.getValidProbabilities("Day")
+  configuration.nightTime = utilities.getValidProbabilities("Night")
+  configuration.specialTime = utilities.getValidProbabilities("Special")
 
   return configuration
+end
+
+utilities.movementsEqual100 = {}
+utilities.strengthsEqual100 = {}
+
+utilities.getValidProbabilities = function(context)
+  local weights = {
+    crawler = SandboxVars.RandomZombiesFull["Crawler_" .. context],
+    shambler = SandboxVars.RandomZombiesFull["Shambler_" .. context],
+    fastShambler = SandboxVars.RandomZombiesFull["FastShambler_" .. context],
+    sprinter = SandboxVars.RandomZombiesFull["Sprinter_" .. context],
+    fragile = SandboxVars.RandomZombiesFull["Fragile_" .. context],
+    normal = SandboxVars.RandomZombiesFull["Normal_" .. context],
+    tough = SandboxVars.RandomZombiesFull["Tough_" .. context],
+    smart = SandboxVars.RandomZombiesFull["Smart_" .. context],
+  }
+
+  local totalMovementWeight = math.max(weights.crawler + weights.shambler + weights.fastShambler + weights.sprinter, 1)
+  
+  -- Allows precision of up to .001%.
+  local crawler = math.floor(100000 * weights.crawler / totalMovementWeight) / 1000
+  local shambler = math.floor(100000 * weights.shambler / totalMovementWeight) / 1000
+  local fastShambler = math.floor(100000 * weights.fastShambler / totalMovementWeight) / 1000
+  local sprinter = math.floor(100000 * weights.sprinter / totalMovementWeight) / 1000
+
+  local totalStrengthWeight = math.max(weights.fragile + weights.normal + weights.tough, 1)
+
+  local fragile = math.floor(100000 * weights.fragile / totalStrengthWeight) / 1000
+  local normal = math.floor(100000 * weights.normal / totalStrengthWeight) / 1000
+  local tough = math.floor(100000 * weights.tough / totalStrengthWeight) / 1000
+
+  local smart = weights.smart -- Unaffected by this process.
+
+  index = 0
+
+  while crawler + shambler + fastShambler + sprinter < 100 do
+    index = (index % 4) + 1
+
+    local nextChunk = math.min(1, 100 - (crawler + shambler + fastShambler + sprinter))
+
+    if index == 1 then
+      crawler = crawler + nextChunk
+    elseif index == 2 then
+      shambler = shambler + nextChunk
+    elseif index == 3 then
+      fastShambler = fastShambler + nextChunk
+    else -- index == 4 so
+      sprinter = sprinter + nextChunk
+    end
+  end
+
+  utilities.movementsEqual100[#utilities.movementsEqual100 + 1] = crawler + shambler + fastShambler + sprinter == 100
+
+  while fragile + normal + tough < 100 do
+    index = (index % 3) + 1
+
+    local nextChunk = math.min(1, 100 - (fragile + normal + tough))
+
+    if index == 1 then
+      fragile = fragile + nextChunk
+    elseif index == 2 then
+      normal = normal + nextChunk
+    else -- index == 3 so
+      tough = tough + nextChunk
+    end
+  end
+
+  utilities.strengthsEqual100[#utilities.strengthsEqual100 + 1] = fragile + normal + tough == 100
+
+  return {
+    crawler = crawler,
+    shambler = shambler,
+    fastShambler = fastShambler,
+    sprinter = sprinter,
+    fragile = fragile,
+    normal = normal,
+    tough = tough,
+    smart = smart
+  }
 end
 
 -- search for function in an object
@@ -221,6 +228,14 @@ utilities.tableHasValue = function (table, findValue)
     end
   end
   return false
+end
+
+utilities.getSandboxVarValue = function (name)
+  return getSandboxOptions():getOptionByName(name):getValue()
+end
+
+utilities.setSandboxVarValue = function (name, value)
+  return getSandboxOptions():set(name, value)
 end
 
 return utilities
